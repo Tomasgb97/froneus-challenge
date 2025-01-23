@@ -1,7 +1,7 @@
 import { Button } from 'primereact/button';
 import { Sidebar } from 'primereact/sidebar';
 import React, { useState } from 'react';
-import { navItemsProps } from '../../Header';
+import { navItemsProps } from '../../../../layout/header/Header';
 import { Ripple } from 'primereact/ripple';
 
 interface NavSideMenuMobileProps {

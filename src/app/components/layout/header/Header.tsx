@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Menubar } from 'primereact/menubar';
 import { useNavigate } from 'react-router-dom';
-import NavSideMenuMobile from './mobile/navSideMenu/NavSideMenu';
+import NavSideMenuMobile from '@components/mobile/layout/header/navSideMenu/NavSideMenuMobile';
 
 export interface navItemsProps {
   label: string;
