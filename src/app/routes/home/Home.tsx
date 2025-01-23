@@ -3,8 +3,10 @@ import React from 'react';
 
 const Home: React.FC = () => {
   return (
-    <div>
-      <h1>Welcome to the Home Page</h1>
+    <div className="w-full flex flex-col items-center">
+      <h1 className="text-7xl text-white font-bold">
+        Tus campañas con nosotros
+      </h1>
       <DoughnutChart />
     </div>
   );
