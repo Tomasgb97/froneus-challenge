@@ -5,13 +5,14 @@ import { useCampaignStore } from './stores/campaingStore';
 import { data } from '@app/data/mock';
 import Campaigns from './routes/campaigns/Campaigns';
 import { useReceiverStore } from './stores/recieversStore';
+import Home from './routes/home/Home';
 
 function App() {
   const { populateCampaigns } = useCampaignStore();
   const { populateReceivers } = useReceiverStore();
   const PublicRoutes = useMemo(() => {
     return [
-      { path: '/', component: <></> },
+      { path: '/', component: <Home /> },
       { path: '/campaigns', component: <Campaigns /> },
     ];
   }, []);
