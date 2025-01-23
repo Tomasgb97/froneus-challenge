@@ -31,7 +31,7 @@ const Header: React.FC = () => {
     ];
   }, []);
   return (
-    <section className="w-full flex justify-between items-center pr-4">
+    <section className="w-full flex justify-between items-center p-4">
       <a className="cursor-pointer select-none h-full px-5">
         <h1 className="font-bold text-white">Froneus</h1>
       </a>
