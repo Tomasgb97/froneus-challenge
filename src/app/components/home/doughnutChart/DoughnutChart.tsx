@@ -21,12 +21,16 @@ const DoughnutChart: React.FC = () => {
   return (
     <div>
       <h2>Doughnut Chart Example</h2>
-      <Chart
-        type="doughnut"
-        data={chartData}
-        options={chartOptions}
-        className="w-full md:w-30rem"
-      />
+      {chartData.datasets[0].data.length > 0 ? (
+        <Chart
+          type="doughnut"
+          data={chartData}
+          options={chartOptions}
+          className="w-full md:w-30rem"
+        />
+      ) : (
+        <h1>No hay data de campañas</h1>
+      )}
     </div>
   );
 };
