@@ -3,6 +3,9 @@ export default {
   plugins: [require('@tailwindcss/forms')],
   theme: {
     extend: {
+      maxWidth: {
+        'container-max': '1280px',
+      },
       colors: {
         primary: {
           50: '#e6f7ff',

@@ -35,9 +35,9 @@ function App() {
 
   return (
     <>
-      <main>
+      <main className="flex flex-col items-center">
         <Header></Header>
-        <section className="w-full h-full">
+        <section className="w-full max-w-container-max h-full flex justify-center">
           <Routes>
             {PublicRoutes.map((rout, i) => {
               return (
