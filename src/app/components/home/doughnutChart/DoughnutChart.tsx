@@ -19,7 +19,6 @@ const DoughnutChart: React.FC = () => {
 
   return (
     <div>
-      <h2>Doughnut Chart Example</h2>
       {chartData.datasets[0].data.length > 0 ? (
         <Chart
           type="doughnut"
