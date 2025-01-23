@@ -7,6 +7,7 @@ interface ReceiverStore {
   addReceiver: (receiver: Person) => void;
   removeReceiver: (id: number) => void;
   clearReceivers: () => void;
+  populateReceivers: (receivers: Person[]) => void;
 }
 
 export const useReceiverStore = create(
@@ -31,7 +32,11 @@ export const useReceiverStore = create(
           return { receivers: [] };
         });
       },
+      populateReceivers: (receivers: Person[]) =>
+        set(() => ({
+          receivers: receivers,
+        })),
     }),
-    { name: 'receiver-items-ids' }
+    { name: 'receiver-items' }
   )
 );

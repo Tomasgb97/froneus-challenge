@@ -22,6 +22,9 @@ function App() {
     if (!campaignsData) {
       populateCampaigns(data.campaigns);
     }
+    if (!campaignsData) {
+      populateCampaigns(data.campaigns);
+    }
   }, []);
 
   return (
