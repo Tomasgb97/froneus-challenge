@@ -8,7 +8,7 @@ export function getChartData(campaigns: Campaign[], status?: CampaignStatus) {
     newCampaigns = campaigns.filter((campaign) => campaign.status == status);
   }
 
-  const colors = generateRandomColors(newCampaigns.length - 1);
+  const colors = generateRandomColors(newCampaigns.length);
 
   const data = {
     labels: [] as string[],
