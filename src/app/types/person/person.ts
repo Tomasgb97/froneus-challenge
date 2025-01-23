@@ -3,5 +3,5 @@ export type Person = {
   name: string;
   surname: string;
   phone: string;
-  asociatedCampaigns: number[];
+  associatedCampaigns: number[];
 };

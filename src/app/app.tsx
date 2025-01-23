@@ -4,9 +4,11 @@ import { useEffect, useMemo } from 'react';
 import { useCampaignStore } from './stores/campaingStore';
 import { data } from '@app/data/mock';
 import Campaigns from './routes/campaigns/Campaigns';
+import { useReceiverStore } from './stores/recieversStore';
 
 function App() {
   const { populateCampaigns } = useCampaignStore();
+  const { populateReceivers } = useReceiverStore();
   const PublicRoutes = useMemo(() => {
     return [
       { path: '/', component: <></> },
@@ -17,13 +19,16 @@ function App() {
   const campaignsData = useMemo(() => {
     return localStorage.getItem('campaign-items');
   }, []);
+  const receiversData = useMemo(() => {
+    return localStorage.getItem('receiver-items');
+  }, []);
 
   useEffect(() => {
     if (!campaignsData) {
       populateCampaigns(data.campaigns);
     }
-    if (!campaignsData) {
-      populateCampaigns(data.campaigns);
+    if (!receiversData) {
+      populateReceivers(data.people);
     }
   }, []);
 
