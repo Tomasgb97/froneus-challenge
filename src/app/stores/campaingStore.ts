@@ -1,19 +1,23 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { Campaign } from '@app/types/campaigns/campaign';
+import { CampaignStatus } from '@app/types/campaigns/status';
 
 interface CampaignStore {
   campaigns: Campaign[];
+  selectedStatusFilterValue: CampaignStatus;
   addCampaign: (campaign: Campaign) => void;
   removeCampaign: (id: number) => void;
   clearCampaigns: () => void;
   populateCampaigns: (campaigns: Campaign[]) => void;
+  setSelectedStatusFilterValue: (status: CampaignStatus) => void;
 }
 
 export const useCampaignStore = create(
   persist<CampaignStore>(
     (set) => ({
       campaigns: [],
+      selectedStatusFilterValue: CampaignStatus.Activa,
       removeCampaign: (id) =>
         set((state) => ({
           campaigns: state.campaigns.filter((campaign) => campaign.id !== id),
@@ -35,6 +39,11 @@ export const useCampaignStore = create(
       populateCampaigns: (campaigns: Campaign[]) =>
         set(() => ({
           campaigns: campaigns,
+        })),
+
+      setSelectedStatusFilterValue: (status: CampaignStatus) =>
+        set(() => ({
+          selectedStatusFilterValue: status,
         })),
     }),
     { name: 'campaign-items' }
