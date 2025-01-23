@@ -2,7 +2,7 @@ export const data = {
   campaigns: [
     {
       id: 1,
-      name: 'Campaña Ventas Verano',
+      name: 'Campaña cobros Santander',
       createdAt: '2025-01-01T10:00:00Z',
       startAt: '2025-01-10T08:00:00Z',
       recording: true,
@@ -11,7 +11,7 @@ export const data = {
     },
     {
       id: 2,
-      name: 'Encuesta Satisfacción Clientes',
+      name: 'Encuesta Deudas Bco. Corrientes',
       createdAt: '2025-01-05T14:00:00Z',
       startAt: '2025-01-15T09:00:00Z',
       recording: false,
@@ -20,7 +20,7 @@ export const data = {
     },
     {
       id: 3,
-      name: 'Promoción Año Nuevo',
+      name: 'Promoción Banco Macro',
       createdAt: '2024-12-20T11:30:00Z',
       startAt: '2024-12-25T12:00:00Z',
       recording: true,
@@ -29,7 +29,7 @@ export const data = {
     },
     {
       id: 4,
-      name: 'Actualización Datos Clientes',
+      name: 'Actualización Datos Clientes ICBC',
       createdAt: '2025-01-02T09:00:00Z',
       startAt: '2025-01-12T10:30:00Z',
       recording: false,
@@ -38,7 +38,7 @@ export const data = {
     },
     {
       id: 5,
-      name: 'Campaña Escolar',
+      name: 'Campaña Bco. Provincia',
       createdAt: '2025-01-03T08:00:00Z',
       startAt: '2025-01-15T08:30:00Z',
       recording: true,
@@ -47,7 +47,7 @@ export const data = {
     },
     {
       id: 6,
-      name: 'Lanzamiento Producto Nuevo',
+      name: 'Lanzamiento Itau',
       createdAt: '2025-01-04T16:00:00Z',
       startAt: '2025-01-20T09:00:00Z',
       recording: true,
