@@ -26,8 +26,8 @@ function App() {
 
   return (
     <>
-      <Header></Header>
       <main>
+        <Header></Header>
         <section className="w-full h-full">
           <Routes>
             {PublicRoutes.map((rout, i) => {

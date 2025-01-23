@@ -21,5 +21,17 @@ export default {
         Figtree: ['Figtree', 'serif'],
       },
     },
+    plugins: [
+      function ({ addBase }) {
+        addBase({
+          h1: {
+            margin: '0',
+          },
+          p: {
+            margin: '0',
+          },
+        });
+      },
+    ],
   },
 };
