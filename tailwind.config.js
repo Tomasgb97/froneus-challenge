@@ -3,6 +3,12 @@ export default {
   plugins: [require("@tailwindcss/forms")],
   theme: {
     extend: {
+      colors:{
+        'primary':{
+          
+
+        }
+      },
       fontFamily: {
         Figtree: ['Figtree', 'serif'],
       }
