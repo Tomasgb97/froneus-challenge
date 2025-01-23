@@ -5,7 +5,7 @@ import { Campaign } from '@app/types/campaigns/campaign';
 interface CampaignStore {
   campaigns: Campaign[];
   addCampaign: (campaign: Campaign) => void;
-  removeCampaign: (id: string) => void;
+  removeCampaign: (id: number) => void;
   clearCampaigns: () => void;
 }
 
