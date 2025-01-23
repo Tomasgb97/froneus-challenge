@@ -11,15 +11,17 @@ export function getChartData(campaigns: Campaign[], status?: CampaignStatus) {
 
   const data = {
     labels: [] as string[],
-    datasets: {
-      data: [] as number[],
-      backgroundColor: colors,
-    },
+    datasets: [
+      {
+        data: [] as number[],
+        backgroundColor: colors,
+      },
+    ],
   };
 
   for (let i = 0; i < campaigns.length; i++) {
     data.labels.push(campaigns[i].name);
-    data.datasets.data.push(campaigns[i].associatedReceivers.length - 1);
+    data.datasets[0].data.push(campaigns[i].associatedReceivers.length - 1);
   }
 
   return data;
