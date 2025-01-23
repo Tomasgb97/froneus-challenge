@@ -4,11 +4,11 @@ import React, { useState } from 'react';
 import { navItemsProps } from '../../Header';
 import { Ripple } from 'primereact/ripple';
 
-interface NavSideMenuProps{
+interface NavSideMenuMobileProps{
     items: navItemsProps[]
 }
 
-const NavSideMenu: React.FC<NavSideMenuProps> = ({items}) => {
+const NavSideMenuMobile: React.FC<NavSideMenuMobileProps> = ({items}) => {
     const [visible, setVisible] = useState(false)
 
     const handleRedirect =(redirect: ()=>void)=>{
@@ -39,4 +39,4 @@ const NavSideMenu: React.FC<NavSideMenuProps> = ({items}) => {
     );
 };
 
-export default NavSideMenu;
+export default NavSideMenuMobile;

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Menubar } from 'primereact/menubar';
 import { useNavigate } from 'react-router-dom';
-import NavSideMenu from './mobile/navSideMenu/NavSideMenu';
+import NavSideMenuMobile from './mobile/navSideMenu/NavSideMenu';
 
 export interface navItemsProps {
     label: string;
@@ -12,7 +12,7 @@ export interface navItemsProps {
 
 const Header: React.FC = () => {
     const navigate = useNavigate();
-    const items: navItemsProps[] = [
+    const items: navItemsProps[] = useMemo(()=>{return [
         {
             label: 'Home',
             command: () => {
@@ -31,7 +31,7 @@ const Header: React.FC = () => {
         
         }
      
-    ];
+    ]},[])
     return (
         <header className='w-full fixed flex justify-between items-center pr-4'>
             <a className='cursor-pointer select-none h-full px-5'>
@@ -40,23 +40,23 @@ const Header: React.FC = () => {
 
             <nav>
                 <div className='pt-menubar bg-transparent hidden lg:inline'>
-                <Menubar pt={{
-        
-        label: {
-          className: "text-white",
-        },
-        icon: {
-            className: "text-white",
-          },
-       
-        content:{
-            className: ' bg-transparent hover:bg-gray-500 active:bg-gray-500'
-        }
-      }} className='bg-transparent' model={items} />
-                </div>
+                    <Menubar pt={{
+                        
+                        label: {
+                        className: "text-white",
+                        },
+                        icon: {
+                            className: "text-white",
+                        },
+                    
+                        content:{
+                            className: ' bg-transparent hover:bg-gray-500 active:bg-gray-500'
+                        }
+                    }} className='bg-transparent' model={items} />
+            </div>
             
             <div className='lg:hidden'>
-            <NavSideMenu  items={items}/>
+            <NavSideMenuMobile  items={items}/>
             </div>
             
             </nav>
