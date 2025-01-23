@@ -1,5 +1,6 @@
 import { getChartData } from '@app/lib/getChartData';
 import { useCampaignStore } from '@app/stores/campaingStore';
+import { CampaignStatus } from '@app/types/campaigns/status';
 import { Chart } from 'primereact/chart';
 
 import React, { useMemo } from 'react';
@@ -14,7 +15,7 @@ const DoughnutChart: React.FC = () => {
   }, []);
 
   const chartData = useMemo(() => {
-    return getChartData(campaigns);
+    return getChartData(campaigns, CampaignStatus.EnEspera);
   }, [campaigns]);
 
   return (

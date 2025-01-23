@@ -3,11 +3,12 @@ import { CampaignStatus } from '@app/types/campaigns/status';
 import { generateRandomColors } from './generateRandomColors';
 
 export function getChartData(campaigns: Campaign[], status?: CampaignStatus) {
+  let newCampaigns = campaigns;
   if (status) {
-    campaigns.filter((campaign) => campaign.status == status);
+    newCampaigns = campaigns.filter((campaign) => campaign.status == status);
   }
 
-  const colors = generateRandomColors(campaigns.length - 1);
+  const colors = generateRandomColors(newCampaigns.length - 1);
 
   const data = {
     labels: [] as string[],
@@ -19,9 +20,9 @@ export function getChartData(campaigns: Campaign[], status?: CampaignStatus) {
     ],
   };
 
-  for (let i = 0; i < campaigns.length; i++) {
-    data.labels.push(campaigns[i].name);
-    data.datasets[0].data.push(campaigns[i].associatedReceivers.length - 1);
+  for (let i = 0; i < newCampaigns.length; i++) {
+    data.labels.push(newCampaigns[i].name);
+    data.datasets[0].data.push(newCampaigns[i].associatedReceivers.length - 1);
   }
 
   return data;
