@@ -1,3 +1,5 @@
+import { CampaignStatus } from '@app/types/campaigns/status';
+
 export const data = {
   campaigns: [
     {
@@ -6,7 +8,7 @@ export const data = {
       createdAt: '2025-01-01T10:00:00Z',
       startAt: '2025-01-10T08:00:00Z',
       recording: true,
-      status: 'En espera',
+      status: CampaignStatus.EnEspera,
       associatedReceivers: [1, 2, 3, 4, 5],
     },
     {
@@ -15,7 +17,7 @@ export const data = {
       createdAt: '2025-01-05T14:00:00Z',
       startAt: '2025-01-15T09:00:00Z',
       recording: false,
-      status: 'Activa',
+      status: CampaignStatus.Activa,
       associatedReceivers: [6, 7, 8, 9, 10],
     },
     {
@@ -24,7 +26,7 @@ export const data = {
       createdAt: '2024-12-20T11:30:00Z',
       startAt: '2024-12-25T12:00:00Z',
       recording: true,
-      status: 'Finalizada',
+      status: CampaignStatus.Finalizada,
       associatedReceivers: [11, 12, 13, 14, 15],
     },
     {
@@ -33,7 +35,7 @@ export const data = {
       createdAt: '2025-01-02T09:00:00Z',
       startAt: '2025-01-12T10:30:00Z',
       recording: false,
-      status: 'En espera',
+      status: CampaignStatus.EnEspera,
       associatedReceivers: [16, 17, 18, 19, 20],
     },
     {
@@ -42,7 +44,7 @@ export const data = {
       createdAt: '2025-01-03T08:00:00Z',
       startAt: '2025-01-15T08:30:00Z',
       recording: true,
-      status: 'Activa',
+      status: CampaignStatus.Activa,
       associatedReceivers: [21, 22, 23, 24, 25],
     },
     {
@@ -51,7 +53,7 @@ export const data = {
       createdAt: '2025-01-04T16:00:00Z',
       startAt: '2025-01-20T09:00:00Z',
       recording: true,
-      status: 'En espera',
+      status: CampaignStatus.EnEspera,
       associatedReceivers: [26, 27, 28, 29, 30],
     },
   ],

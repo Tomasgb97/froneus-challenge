@@ -7,6 +7,7 @@ interface CampaignStore {
   addCampaign: (campaign: Campaign) => void;
   removeCampaign: (id: number) => void;
   clearCampaigns: () => void;
+  populateCampaigns: (campaigns: Campaign[]) => void;
 }
 
 export const useCampaignStore = create(
@@ -31,7 +32,11 @@ export const useCampaignStore = create(
           return { campaigns: [] };
         });
       },
+      populateCampaigns: (campaigns: Campaign[]) =>
+        set(() => ({
+          campaigns: campaigns,
+        })),
     }),
-    { name: 'campaign-items-ids' }
+    { name: 'campaign-items' }
   )
 );

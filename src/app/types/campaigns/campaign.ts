@@ -3,9 +3,9 @@ import { CampaignStatus } from '@app/types/campaigns/status';
 export interface Campaign {
   id: number;
   name: string;
-  createdAt: Date;
-  startAt: Date;
+  createdAt: string;
+  startAt: string;
   recording: boolean;
   status: CampaignStatus;
-  asociatedRecievers: number[];
+  associatedReceivers: number[];
 }
