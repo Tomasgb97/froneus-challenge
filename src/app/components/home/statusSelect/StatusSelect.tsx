@@ -13,12 +13,11 @@ const StatusSelect: React.FC = () => {
 
   return (
     <>
-      <span className="text-2xl  text-primary-300">Filtra por estado</span>
+      <p className="text-2xl  text-primary-300">Filtra por estado</p>
       <Dropdown
         value={selectedStatusFilterValue}
         onChange={(e) => setSelectedStatusFilterValue(e.value)}
         options={options}
-        optionLabel="Estado"
         placeholder="Selecciona un estado"
       />
     </>

@@ -13,10 +13,12 @@ const Home: React.FC = () => {
         con nosotros
       </h1>
 
-      <section className="w-full max-w-96 flex justify-between items-center">
+      <div className="w-full max-w-96 flex justify-between items-center overflow-x-hidden">
         <StatusSelect />
-      </section>
-      <DoughnutChart />
+      </div>
+      <div className="p-2">
+        <DoughnutChart />
+      </div>
     </div>
   );
 };

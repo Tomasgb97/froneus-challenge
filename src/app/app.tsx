@@ -6,6 +6,7 @@ import { data } from '@app/data/mock';
 import Campaigns from './routes/campaigns/Campaigns';
 import { useReceiverStore } from './stores/recieversStore';
 import Home from './routes/home/Home';
+import Footer from '@components/layout/footer/Footer';
 
 function App() {
   const { populateCampaigns } = useCampaignStore();
@@ -35,8 +36,8 @@ function App() {
 
   return (
     <>
-      <main className="flex flex-col items-center">
-        <Header></Header>
+      <main className="min-h-dvh flex flex-col items-center justify-between">
+        <Header />
         <section className="w-full max-w-container-max h-full flex justify-center">
           <Routes>
             {PublicRoutes.map((rout, i) => {
@@ -50,6 +51,7 @@ function App() {
             })}
           </Routes>
         </section>
+        <Footer />
       </main>
     </>
   );
