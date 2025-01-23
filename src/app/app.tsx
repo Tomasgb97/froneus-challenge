@@ -3,11 +3,15 @@ import Header from '@components/layout/header/Header';
 import { useEffect, useMemo } from 'react';
 import { useCampaignStore } from './stores/campaingStore';
 import { data } from '@app/data/mock';
+import Campaigns from './routes/campaigns/Campaigns';
 
 function App() {
   const { populateCampaigns } = useCampaignStore();
   const PublicRoutes = useMemo(() => {
-    return [{ path: '/', component: <></> }];
+    return [
+      { path: '/', component: <></> },
+      { path: '/campaigns', component: <Campaigns /> },
+    ];
   }, []);
 
   const campaignsData = useMemo(() => {
@@ -24,13 +28,19 @@ function App() {
     <>
       <Header></Header>
       <main>
-        <Routes>
-          {PublicRoutes.map((rout, i) => {
-            return (
-              <Route key={i} path={rout.path} element={rout.component}></Route>
-            );
-          })}
-        </Routes>
+        <section className="w-full h-full">
+          <Routes>
+            {PublicRoutes.map((rout, i) => {
+              return (
+                <Route
+                  key={i}
+                  path={rout.path}
+                  element={rout.component}
+                ></Route>
+              );
+            })}
+          </Routes>
+        </section>
       </main>
     </>
   );
