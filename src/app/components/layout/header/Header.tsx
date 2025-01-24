@@ -15,14 +15,14 @@ const Header: React.FC = () => {
   const items: navItemsProps[] = useMemo(() => {
     return [
       {
-        label: 'Home',
+        label: 'Inicio',
         command: () => {
           navigate('/');
         },
         icon: 'pi pi-home',
       },
       {
-        label: 'Campaigns',
+        label: 'Campañas',
         command: () => {
           navigate('/campaigns');
         },
