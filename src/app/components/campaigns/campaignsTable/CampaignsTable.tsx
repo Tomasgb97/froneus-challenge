@@ -8,7 +8,6 @@ import { CampaignStatus } from '@app/types/campaigns/status';
 import CustomConfirmDialog from '@components/common/confirmDialog';
 import { useNavigate } from 'react-router';
 import { getDateStringWithoutTime } from '@app/lib/getDateStringWithoutTime';
-import { p } from 'node_modules/react-router/dist/development/fog-of-war-ClXvjZ4E.d.mts';
 
 const CampaignsTable: React.FC = () => {
   const { campaigns, removeCampaign } = useCampaignStore();
