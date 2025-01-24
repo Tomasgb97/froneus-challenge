@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { useCampaignStore } from '@app/stores/campaingStore';
@@ -8,6 +8,7 @@ import { CampaignStatus } from '@app/types/campaigns/status';
 import CustomConfirmDialog from '@components/common/confirmDialog';
 import { useNavigate } from 'react-router';
 import { getDateStringWithoutTime } from '@app/lib/getDateStringWithoutTime';
+import { p } from 'node_modules/react-router/dist/development/fog-of-war-ClXvjZ4E.d.mts';
 
 const CampaignsTable: React.FC = () => {
   const { campaigns, removeCampaign } = useCampaignStore();
@@ -57,6 +58,17 @@ const CampaignsTable: React.FC = () => {
     );
   };
 
+  const statusBodyTemplate = (campaign: Campaign) => {
+    const statusColor = {
+      [CampaignStatus.Activa]: 'text-green-500 font-semibold',
+      [CampaignStatus.EnEspera]: 'text-yellow-500 font-semibold',
+      [CampaignStatus.Finalizada]: 'text-red-500 font-semibold',
+    };
+
+    const style = statusColor[campaign.status] || 'black';
+    return <p className={style}></p>;
+  };
+
   return (
     <div>
       <CustomConfirmDialog
@@ -101,7 +113,12 @@ const CampaignsTable: React.FC = () => {
           body={(campaign) => recordingBodyTemplate(campaign)}
           header="Grabado"
         ></Column>
-        <Column align={'center'} field="status" header="Estado"></Column>
+        <Column
+          align={'center'}
+          body={(campaign) => statusBodyTemplate(campaign)}
+          field="status"
+          header="Estado"
+        ></Column>
 
         <Column
           align={'center'}
