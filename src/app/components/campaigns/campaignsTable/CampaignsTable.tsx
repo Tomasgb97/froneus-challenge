@@ -66,7 +66,7 @@ const CampaignsTable: React.FC = () => {
     };
 
     const style = statusColor[campaign.status] || 'black';
-    return <p className={style}></p>;
+    return <p className={style}>{campaign.status}</p>;
   };
 
   return (
