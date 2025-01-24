@@ -8,7 +8,14 @@ const StatusSelect: React.FC = () => {
     useCampaignStore();
 
   const options = useMemo(() => {
-    return Object.values(CampaignStatus);
+    const mappedOptions = [
+      { name: 'Todas', value: null },
+      ...Object.values(CampaignStatus).map((value) => ({
+        name: value,
+        value,
+      })),
+    ];
+    return mappedOptions;
   }, []);
 
   return (
@@ -22,7 +29,12 @@ const StatusSelect: React.FC = () => {
           },
         }}
         value={selectedStatusFilterValue}
-        onChange={(e) => setSelectedStatusFilterValue(e.value)}
+        onChange={(e) => {
+          console.log(e);
+          setSelectedStatusFilterValue(e.value);
+        }}
+        optionLabel="name"
+        optionValue="value"
         options={options}
         placeholder="Selecciona un estado"
       />

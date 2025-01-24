@@ -2,7 +2,10 @@ import { Campaign } from '@app/types/campaigns/campaign';
 import { CampaignStatus } from '@app/types/campaigns/status';
 import { generateRandomColors } from './generateRandomColors';
 
-export function getChartData(campaigns: Campaign[], status?: CampaignStatus) {
+export function getChartData(
+  campaigns: Campaign[],
+  status?: CampaignStatus | null
+) {
   let newCampaigns = campaigns;
   if (status) {
     newCampaigns = campaigns.filter((campaign) => campaign.status == status);

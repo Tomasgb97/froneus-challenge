@@ -5,12 +5,12 @@ import { CampaignStatus } from '@app/types/campaigns/status';
 
 interface CampaignStore {
   campaigns: Campaign[];
-  selectedStatusFilterValue: CampaignStatus;
+  selectedStatusFilterValue: CampaignStatus | null;
   addCampaign: (campaign: Campaign) => void;
   removeCampaign: (id: number) => void;
   clearCampaigns: () => void;
   populateCampaigns: (campaigns: Campaign[]) => void;
-  setSelectedStatusFilterValue: (status: CampaignStatus) => void;
+  setSelectedStatusFilterValue: (status: CampaignStatus | null) => void;
 }
 
 export const useCampaignStore = create(
@@ -41,7 +41,7 @@ export const useCampaignStore = create(
           campaigns: campaigns,
         })),
 
-      setSelectedStatusFilterValue: (status: CampaignStatus) =>
+      setSelectedStatusFilterValue: (status: CampaignStatus | null) =>
         set(() => ({
           selectedStatusFilterValue: status,
         })),
