@@ -6,11 +6,13 @@ import { CampaignStatus } from '@app/types/campaigns/status';
 interface CampaignStore {
   campaigns: Campaign[];
   selectedStatusFilterValue: CampaignStatus | null;
+  selectedCampaignId: number | null;
   addCampaign: (campaign: Campaign) => void;
   removeCampaign: (id: number) => void;
   clearCampaigns: () => void;
   populateCampaigns: (campaigns: Campaign[]) => void;
   setSelectedStatusFilterValue: (status: CampaignStatus | null) => void;
+  setSelectedCampaignId: (id: number | null) => void;
 }
 
 export const useCampaignStore = create(
@@ -18,6 +20,7 @@ export const useCampaignStore = create(
     (set) => ({
       campaigns: [],
       selectedStatusFilterValue: CampaignStatus.Activa,
+      selectedCampaignId: null,
       removeCampaign: (id) =>
         set((state) => ({
           campaigns: state.campaigns.filter((campaign) => campaign.id !== id),
@@ -44,6 +47,10 @@ export const useCampaignStore = create(
       setSelectedStatusFilterValue: (status: CampaignStatus | null) =>
         set(() => ({
           selectedStatusFilterValue: status,
+        })),
+      setSelectedCampaignId: (id: number | null) =>
+        set(() => ({
+          selectedCampaignId: id,
         })),
     }),
     { name: 'campaign-items' }

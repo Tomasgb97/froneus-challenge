@@ -1,20 +1,16 @@
-import React, { useMemo, useState } from 'react';
+import React from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { useCampaignStore } from '@app/stores/campaingStore';
 import { Campaign } from '@app/types/campaigns/campaign';
 import { Button } from 'primereact/button';
 import { CampaignStatus } from '@app/types/campaigns/status';
-import CustomConfirmDialog from '@components/common/confirmDialog';
 import { useNavigate } from 'react-router';
 import { getDateStringWithoutTime } from '@app/lib/getDateStringWithoutTime';
+import { useCampaignStore } from '@app/stores/campaingStore';
 
-const CampaignsTable: React.FC = () => {
-  const { campaigns, removeCampaign } = useCampaignStore();
+const CampaignsTable: React.FC = ({}) => {
+  const { campaigns, setSelectedCampaignId } = useCampaignStore();
   const navigate = useNavigate();
-  const [selectedCampaignId, setSelectedCampaignId] = useState<number | null>(
-    null
-  );
 
   const datesBodyTemplate = (
     campaign: Campaign,
@@ -70,19 +66,6 @@ const CampaignsTable: React.FC = () => {
 
   return (
     <div>
-      <CustomConfirmDialog
-        dialogMessage="Estas seguro de borrar esta campaña?"
-        dialogHeader="Confirmar eliminacion"
-        visible={selectedCampaignId !== null}
-        onHide={() => setSelectedCampaignId(null)}
-        acceptLabel="Si borrar"
-        cancelLabel="Cancelar"
-        onAccept={() => {
-          if (selectedCampaignId) removeCampaign(selectedCampaignId);
-          setSelectedCampaignId(null);
-        }}
-        onReject={() => setSelectedCampaignId(null)}
-      />
       <DataTable
         className="p-2"
         pt={{

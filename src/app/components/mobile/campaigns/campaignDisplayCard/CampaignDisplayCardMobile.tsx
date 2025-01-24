@@ -1,4 +1,5 @@
 import { getDateStringWithoutTime } from '@app/lib/getDateStringWithoutTime';
+import { useCampaignStore } from '@app/stores/campaingStore';
 import { Campaign } from '@app/types/campaigns/campaign';
 import { CampaignStatus } from '@app/types/campaigns/status';
 import { Button } from 'primereact/button';
@@ -14,6 +15,7 @@ const CampaignDisplayCardMobile: React.FC<CampaignDisplayCardMobileProps> = ({
   campaign,
 }) => {
   const navigate = useNavigate();
+  const { setSelectedCampaignId } = useCampaignStore();
   const statusTextStyle = useMemo(() => {
     const statusColor = {
       [CampaignStatus.Activa]: 'text-green-500 font-semibold',
@@ -42,6 +44,7 @@ const CampaignDisplayCardMobile: React.FC<CampaignDisplayCardMobileProps> = ({
         severity="secondary"
         className="bg-red-500 p-2 text-white"
         style={{ marginLeft: '0.5em' }}
+        onClick={() => setSelectedCampaignId(campaign.id)}
       />
     </>
   );
