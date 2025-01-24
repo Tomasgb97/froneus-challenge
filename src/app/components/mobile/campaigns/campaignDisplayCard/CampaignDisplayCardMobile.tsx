@@ -35,7 +35,7 @@ const CampaignDisplayCardMobile: React.FC<CampaignDisplayCardMobileProps> = ({
   const footer = (
     <>
       <Button
-        onClick={() => navigate(`/campaigns/${campaign.id}`)}
+        onClick={() => navigate(`/campaign/${campaign.id}`)}
         label="Editar"
         className="bg-primary-600 p-2 text-white"
       />

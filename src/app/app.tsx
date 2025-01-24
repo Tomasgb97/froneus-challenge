@@ -7,6 +7,7 @@ import Campaigns from './routes/campaigns/Campaigns';
 import { useReceiverStore } from './stores/recieversStore';
 import Home from './routes/home/Home';
 import Footer from '@components/layout/footer/Footer';
+import EditCampaigns from './routes/campaign/[id]/EditCampaigns';
 
 function App() {
   const { populateCampaigns } = useCampaignStore();
@@ -15,6 +16,7 @@ function App() {
     return [
       { path: '/', component: <Home /> },
       { path: '/campaigns', component: <Campaigns /> },
+      { path: '/campaign/:id', component: <EditCampaigns /> },
     ];
   }, []);
 
