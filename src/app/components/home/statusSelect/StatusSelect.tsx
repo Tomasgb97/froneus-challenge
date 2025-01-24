@@ -15,6 +15,12 @@ const StatusSelect: React.FC = () => {
     <>
       <p className="text-2xl  text-primary-300">Filtra por estado</p>
       <Dropdown
+        className="min-w-36 focus-within:shadow-none  "
+        pt={{
+          input: {
+            className: 'py-1 focus-visible:shadow-none',
+          },
+        }}
         value={selectedStatusFilterValue}
         onChange={(e) => setSelectedStatusFilterValue(e.value)}
         options={options}

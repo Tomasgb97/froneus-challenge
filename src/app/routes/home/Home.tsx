@@ -13,7 +13,7 @@ const Home: React.FC = () => {
         con nosotros
       </h1>
 
-      <div className="w-full max-w-96 flex justify-between items-center overflow-x-hidden">
+      <div className="w-full max-w-96 flex justify-between items-center overflow-hidden">
         <StatusSelect />
       </div>
       <div className="p-2">
