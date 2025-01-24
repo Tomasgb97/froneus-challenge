@@ -75,6 +75,7 @@ const CampaignsTable: React.FC = ({}) => {
         }}
         value={campaigns}
         scrollable={true}
+        emptyMessage="No tienes campañas en el historial"
       >
         <Column className="font-bold" field="name" header="Nombre"></Column>
         <Column
