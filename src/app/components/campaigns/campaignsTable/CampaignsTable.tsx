@@ -7,6 +7,7 @@ import { Button } from 'primereact/button';
 import { CampaignStatus } from '@app/types/campaigns/status';
 import CustomConfirmDialog from '@components/common/confirmDialog';
 import { useNavigate } from 'react-router';
+import { getDateStringWithoutTime } from '@app/lib/getDateStringWithoutTime';
 
 const CampaignsTable: React.FC = () => {
   const { campaigns, removeCampaign } = useCampaignStore();
@@ -20,14 +21,9 @@ const CampaignsTable: React.FC = () => {
     type: 'created' | 'startsAt'
   ) => {
     const myDate = type == 'created' ? campaign.createdAt : campaign.startAt;
+    const formatedDate = getDateStringWithoutTime(myDate);
 
-    const fullDate = new Date(myDate);
-    const formattedDateWithoutTime = new Date(
-      fullDate.getFullYear(),
-      fullDate.getMonth(),
-      fullDate.getDate()
-    ).toLocaleDateString();
-    return <p>{formattedDateWithoutTime}</p>;
+    return <p>{formatedDate}</p>;
   };
 
   const recordingBodyTemplate = (campaign: Campaign) => {
