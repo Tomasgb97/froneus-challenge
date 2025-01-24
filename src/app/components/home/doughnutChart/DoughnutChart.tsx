@@ -32,7 +32,9 @@ const DoughnutChart: React.FC = () => {
           className="w-full md:w-30rem cursor-pointer"
         />
       ) : (
-        <h1>No hay data de campañas</h1>
+        <h1 className="font-bold text-white text-4xl">
+          No hay data de campañas
+        </h1>
       )}
     </div>
   );
