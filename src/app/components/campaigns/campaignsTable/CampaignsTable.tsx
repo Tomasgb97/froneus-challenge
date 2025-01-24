@@ -3,6 +3,8 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { useCampaignStore } from '@app/stores/campaingStore';
 import { Campaign } from '@app/types/campaigns/campaign';
+import { Button } from 'primereact/button';
+import { CampaignStatus } from '@app/types/campaigns/status';
 
 const CampaignsTable: React.FC = () => {
   const { campaigns } = useCampaignStore();
@@ -23,7 +25,35 @@ const CampaignsTable: React.FC = () => {
   };
 
   const recordingBodyTemplate = (campaign: Campaign) => {
-    return campaign.recording ? 'Si' : 'No';
+    return campaign.recording ? (
+      <p className="font-bold text-primary-600">Si</p>
+    ) : (
+      <p className="font-bold">No</p>
+    );
+  };
+
+  const editCampaingBodyTemplate = (campaign: Campaign) => {
+    return (
+      <Button
+        type="button"
+        className="text-primary-600"
+        label="Editar"
+        link
+        disabled={campaign.status == CampaignStatus.Finalizada}
+      ></Button>
+    );
+  };
+
+  const deleteCampaingBodyTemplate = (campaign: Campaign) => {
+    return (
+      <Button
+        type="button"
+        className="text-red-500"
+        label="Eliminar"
+        disabled={campaign.status != CampaignStatus.EnEspera}
+        onClick={() => {}}
+      ></Button>
+    );
   };
 
   return (
@@ -38,7 +68,7 @@ const CampaignsTable: React.FC = () => {
         value={campaigns}
         tableStyle={{ minWidth: '50rem' }}
       >
-        <Column field="name" header="Nombre"></Column>
+        <Column className="font-bold" field="name" header="Nombre"></Column>
         <Column
           align={'center'}
           field="createdAt"
@@ -58,6 +88,20 @@ const CampaignsTable: React.FC = () => {
           header="Grabado"
         ></Column>
         <Column align={'center'} field="status" header="Estado"></Column>
+
+        <Column
+          align={'center'}
+          body={editCampaingBodyTemplate}
+          field="edit"
+          header="Editar"
+        ></Column>
+
+        <Column
+          align={'center'}
+          body={deleteCampaingBodyTemplate}
+          field="Delete"
+          header="Eliminar"
+        ></Column>
       </DataTable>
     </div>
   );
