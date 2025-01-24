@@ -1,16 +1,17 @@
 import CampaignsTable from '@components/campaigns/campaignsTable/CampaignsTable';
+import CampaignsCardsGrid from '@components/mobile/campaigns/campaignsCardsGrid/CampaignsCardsGrids';
 import { Divider } from 'primereact/divider';
 import React from 'react';
 
 const Campaigns: React.FC = () => {
   return (
-    <div className=" w-full flex flex-col items-center h-full">
+    <div className=" p-4 w-full flex flex-col items-center h-full">
       <h1 className="text-7xl text-white font-bold">Maneja tus campañas</h1>
       <Divider layout="horizontal" className="flex h-0.5 bg-primary-900" />
       <div className=" hidden md:flex">
         <CampaignsTable />
       </div>
-      <div className="w-full grid grid-cols-[repeat(auto-fill,minmax(90px,1fr))] place-items-center gap-6 md:hidden"></div>
+      <CampaignsCardsGrid />
     </div>
   );
 };
