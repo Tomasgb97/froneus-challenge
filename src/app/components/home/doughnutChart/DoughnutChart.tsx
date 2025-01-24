@@ -22,8 +22,18 @@ const DoughnutChart: React.FC = () => {
     return getChartData(campaigns, selectedStatusFilterValue);
   }, [campaigns, selectedStatusFilterValue]);
 
+  const totalAmountofRecievers = useMemo(() => {
+    return chartData.datasets[0].data.reduce((acc, curr) => {
+      return acc + curr;
+    }, 0);
+  }, [chartData.datasets[0]]);
+
   return (
     <div>
+      <h1 className="text-2x font-semibold mb-4 text-white text-center">
+        Total de personas:{' '}
+        <p className="text-primary-300">{totalAmountofRecievers}</p>
+      </h1>
       {chartData.datasets[0].data.length > 0 ? (
         <Chart
           type="doughnut"
