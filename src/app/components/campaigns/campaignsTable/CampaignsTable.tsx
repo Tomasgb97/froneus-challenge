@@ -22,22 +22,42 @@ const CampaignsTable: React.FC = () => {
     return <p>{formattedDateWithoutTime}</p>;
   };
 
+  const recordingBodyTemplate = (campaign: Campaign) => {
+    return campaign.recording ? 'Si' : 'No';
+  };
+
   return (
-    <div className="card">
-      <DataTable value={campaigns} tableStyle={{ minWidth: '50rem' }}>
+    <div>
+      <DataTable
+        className="p-2"
+        pt={{
+          wrapper: {
+            className: 'rounded-lg',
+          },
+        }}
+        value={campaigns}
+        tableStyle={{ minWidth: '50rem' }}
+      >
         <Column field="name" header="Nombre"></Column>
         <Column
+          align={'center'}
           field="createdAt"
           body={(campaignData) => datesBodyTemplate(campaignData, 'created')}
           header="Creada"
         ></Column>
         <Column
+          align={'center'}
           field="startAt"
           body={(campaignData) => datesBodyTemplate(campaignData, 'startsAt')}
           header="A partir de"
         ></Column>
-        <Column field="recording" header="Grabado"></Column>
-        <Column field="status" header="Estado"></Column>
+        <Column
+          align={'center'}
+          field="recording"
+          body={recordingBodyTemplate}
+          header="Grabado"
+        ></Column>
+        <Column align={'center'} field="status" header="Estado"></Column>
       </DataTable>
     </div>
   );
