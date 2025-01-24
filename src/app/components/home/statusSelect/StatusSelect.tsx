@@ -30,7 +30,6 @@ const StatusSelect: React.FC = () => {
         }}
         value={selectedStatusFilterValue}
         onChange={(e) => {
-          console.log(e);
           setSelectedStatusFilterValue(e.value);
         }}
         optionLabel="name"
