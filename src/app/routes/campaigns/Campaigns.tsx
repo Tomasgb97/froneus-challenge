@@ -10,6 +10,7 @@ const Campaigns: React.FC = () => {
       <div className=" hidden md:flex">
         <CampaignsTable />
       </div>
+      <div className="w-full grid grid-cols-[repeat(auto-fill,minmax(90px,1fr))] place-items-center gap-6 md:hidden"></div>
     </div>
   );
 };
