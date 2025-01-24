@@ -4,6 +4,7 @@ import { CampaignStatus } from '@app/types/campaigns/status';
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
 import React, { useMemo } from 'react';
+import { useNavigate } from 'react-router';
 
 interface CampaignDisplayCardMobileProps {
   campaign: Campaign;
@@ -12,24 +13,7 @@ interface CampaignDisplayCardMobileProps {
 const CampaignDisplayCardMobile: React.FC<CampaignDisplayCardMobileProps> = ({
   campaign,
 }) => {
-  const header = (
-    <img
-      alt="Card"
-      src="https://primefaces.org/cdn/primereact/images/usercard.png"
-    />
-  );
-  const footer = (
-    <>
-      <Button label="Editar" className="bg-primary-600 p-2 text-white" />
-      <Button
-        label="Eliminar"
-        severity="secondary"
-        className="bg-red-500 p-2 text-white"
-        style={{ marginLeft: '0.5em' }}
-      />
-    </>
-  );
-
+  const navigate = useNavigate();
   const statusTextStyle = useMemo(() => {
     const statusColor = {
       [CampaignStatus.Activa]: 'text-green-500 font-semibold',
@@ -39,6 +23,28 @@ const CampaignDisplayCardMobile: React.FC<CampaignDisplayCardMobileProps> = ({
 
     return statusColor[campaign.status] || 'black';
   }, [campaign.status]);
+
+  const header = (
+    <img
+      alt="Card"
+      src="https://primefaces.org/cdn/primereact/images/usercard.png"
+    />
+  );
+  const footer = (
+    <>
+      <Button
+        onClick={() => navigate(`/campaigns/${campaign.id}`)}
+        label="Editar"
+        className="bg-primary-600 p-2 text-white"
+      />
+      <Button
+        label="Eliminar"
+        severity="secondary"
+        className="bg-red-500 p-2 text-white"
+        style={{ marginLeft: '0.5em' }}
+      />
+    </>
+  );
 
   return (
     <div className="card flex justify-content-center">
