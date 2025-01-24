@@ -14,6 +14,7 @@ export function getChartData(campaigns: Campaign[], status?: CampaignStatus) {
     labels: [] as string[],
     datasets: [
       {
+        label: 'Personas asociadas',
         data: [] as number[],
         backgroundColor: colors,
       },
