@@ -7,7 +7,9 @@ const Campaigns: React.FC = () => {
     <div className=" w-full flex flex-col items-center h-full">
       <h1 className="text-7xl text-white font-bold">Maneja tus campañas</h1>
       <Divider layout="horizontal" className="flex h-0.5 bg-primary-900" />
-      <CampaignsTable />
+      <div className=" hidden md:flex">
+        <CampaignsTable />
+      </div>
     </div>
   );
 };

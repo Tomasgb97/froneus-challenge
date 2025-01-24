@@ -84,7 +84,7 @@ const CampaignsTable: React.FC = () => {
           },
         }}
         value={campaigns}
-        tableStyle={{ minWidth: '50rem' }}
+        scrollable={true}
       >
         <Column className="font-bold" field="name" header="Nombre"></Column>
         <Column
