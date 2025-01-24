@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { useCampaignStore } from '@app/stores/campaingStore';
 import { Campaign } from '@app/types/campaigns/campaign';
 import { Button } from 'primereact/button';
 import { CampaignStatus } from '@app/types/campaigns/status';
+import CustomConfirmDialog from '@components/common/confirmDialog';
+import { useNavigate } from 'react-router';
 
 const CampaignsTable: React.FC = () => {
-  const { campaigns } = useCampaignStore();
+  const { campaigns, removeCampaign } = useCampaignStore();
+  const navigate = useNavigate();
+  const [selectedCampaignId, setSelectedCampaignId] = useState<number | null>(
+    null
+  );
 
   const datesBodyTemplate = (
     campaign: Campaign,
@@ -40,6 +46,7 @@ const CampaignsTable: React.FC = () => {
         label="Editar"
         link
         disabled={campaign.status == CampaignStatus.Finalizada}
+        onClick={() => navigate(`/campaign/${campaign.id}`)}
       ></Button>
     );
   };
@@ -47,17 +54,28 @@ const CampaignsTable: React.FC = () => {
   const deleteCampaingBodyTemplate = (campaign: Campaign) => {
     return (
       <Button
-        type="button"
-        className="text-red-500"
-        label="Eliminar"
-        disabled={campaign.status != CampaignStatus.EnEspera}
-        onClick={() => {}}
+        onClick={() => setSelectedCampaignId(campaign.id)}
+        icon="pi pi-times"
+        label={'Eliminar'}
       ></Button>
     );
   };
 
   return (
     <div>
+      <CustomConfirmDialog
+        dialogMessage="Estas seguro de borrar esta campaña?"
+        dialogHeader="Confirmar eliminacion"
+        visible={selectedCampaignId !== null}
+        onHide={() => setSelectedCampaignId(null)}
+        acceptLabel="Si borrar"
+        cancelLabel="Cancelar"
+        onAccept={() => {
+          if (selectedCampaignId) removeCampaign(selectedCampaignId);
+          setSelectedCampaignId(null);
+        }}
+        onReject={() => setSelectedCampaignId(null)}
+      />
       <DataTable
         className="p-2"
         pt={{
@@ -84,21 +102,21 @@ const CampaignsTable: React.FC = () => {
         <Column
           align={'center'}
           field="recording"
-          body={recordingBodyTemplate}
+          body={(campaign) => recordingBodyTemplate(campaign)}
           header="Grabado"
         ></Column>
         <Column align={'center'} field="status" header="Estado"></Column>
 
         <Column
           align={'center'}
-          body={editCampaingBodyTemplate}
+          body={(campaign) => editCampaingBodyTemplate(campaign)}
           field="edit"
           header="Editar"
         ></Column>
 
         <Column
           align={'center'}
-          body={deleteCampaingBodyTemplate}
+          body={(campaign) => deleteCampaingBodyTemplate(campaign)}
           field="Delete"
           header="Eliminar"
         ></Column>
