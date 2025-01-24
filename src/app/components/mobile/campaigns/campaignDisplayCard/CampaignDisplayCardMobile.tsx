@@ -1,7 +1,9 @@
+import { getDateStringWithoutTime } from '@app/lib/getDateStringWithoutTime';
 import { Campaign } from '@app/types/campaigns/campaign';
+import { CampaignStatus } from '@app/types/campaigns/status';
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
-import React from 'react';
+import React, { useMemo } from 'react';
 
 interface CampaignDisplayCardMobileProps {
   campaign: Campaign;
@@ -28,6 +30,16 @@ const CampaignDisplayCardMobile: React.FC<CampaignDisplayCardMobileProps> = ({
     </>
   );
 
+  const statusTextStyle = useMemo(() => {
+    const statusColor = {
+      [CampaignStatus.Activa]: 'text-green-500 font-semibold',
+      [CampaignStatus.EnEspera]: 'text-yellow-500 font-semibold',
+      [CampaignStatus.Finalizada]: 'text-red-500 font-semibold',
+    };
+
+    return statusColor[campaign.status] || 'black';
+  }, [campaign.status]);
+
   return (
     <div className="card flex justify-content-center">
       <Card
@@ -36,12 +48,25 @@ const CampaignDisplayCardMobile: React.FC<CampaignDisplayCardMobileProps> = ({
         footer={footer}
         header={header}
         className="md:w-25rem"
+        pt={{ subTitle: { className: statusTextStyle } }}
       >
         <ul>
-          <li>Creada:</li>
-          <li>Empieza: </li>
-          <li>Grabacion: {campaign.recording ? 'SI' : 'NO'} </li>
-          <li>Asociados: {campaign.associatedReceivers.length}</li>
+          <li>
+            <span className="font-semibold">Creada</span>:{' '}
+            {getDateStringWithoutTime(campaign.createdAt)}
+          </li>
+          <li>
+            <span className="font-semibold">Empieza</span>:{' '}
+            {getDateStringWithoutTime(campaign.startAt)}
+          </li>
+          <li>
+            <span className="font-semibold">Grabacion</span>:{' '}
+            {campaign.recording ? 'SI' : 'NO'}{' '}
+          </li>
+          <li>
+            <span className="font-semibold">Asociados</span>:{' '}
+            {campaign.associatedReceivers.length}
+          </li>
         </ul>
       </Card>
     </div>
