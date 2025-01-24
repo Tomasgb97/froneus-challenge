@@ -9,7 +9,12 @@ const DoughnutChart: React.FC = () => {
 
   const chartOptions = useMemo(() => {
     return {
-      cutout: '60%',
+      cutout: '40%',
+      plugins: {
+        legend: {
+          display: false,
+        },
+      },
     };
   }, []);
 
