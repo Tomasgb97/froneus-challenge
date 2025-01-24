@@ -24,7 +24,7 @@ const DoughnutChart: React.FC = () => {
           type="doughnut"
           data={chartData}
           options={chartOptions}
-          className="w-full md:w-30rem"
+          className="w-full md:w-30rem cursor-pointer"
         />
       ) : (
         <h1>No hay data de campañas</h1>
