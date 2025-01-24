@@ -2,7 +2,6 @@
 @import 'primereact/resources/themes/lara-light-blue/theme.css';
 @import 'primereact/resources/primereact.min.css';
 @import 'primeicons/primeicons.css';
-@import 'primeflex/primeflex.css';
 
 @tailwind base;
 @tailwind components;
@@ -25,7 +24,7 @@
   }
 
   main {
-    @apply px-4 min-h-screen sm:px-0 space-y-16 w-full bg-gray-900;
+    @apply min-h-screen sm:px-0 space-y-16 w-full bg-gray-900;
     background-image: radial-gradient(
         hsla(210, 40%, 98%, 0.486) 1px,
         transparent 0
