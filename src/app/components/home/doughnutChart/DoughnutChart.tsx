@@ -30,7 +30,7 @@ const DoughnutChart: React.FC = () => {
 
   return (
     <div>
-      <h1 className="text-2x font-semibold mb-4 text-white text-center">
+      <h1 className="font-semibold mb-4 text-white text-center">
         Total de personas:{' '}
         <p className="text-primary-300">{totalAmountofRecievers}</p>
       </h1>
