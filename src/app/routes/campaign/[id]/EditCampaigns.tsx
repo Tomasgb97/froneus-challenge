@@ -8,15 +8,35 @@ const EditCampaigns: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { campaigns } = useCampaignStore();
 
-  cosnt[(tabViewStrategy, setTabViewStrategy)] = useState();
-
-  const tabs: { label: string; icon: string }[] = useMemo(() => {
+  const tabs: {
+    label: string;
+    icon: string;
+    command: (e: any) => void;
+    component: React.ReactNode;
+  }[] = useMemo(() => {
     return [
-      { label: 'Datos', icon: 'pi pi-file' },
-      { label: 'Asociados', icon: 'pi pi-user' },
-      { label: 'Agregar personas', icon: 'pi pi-id-card' },
+      {
+        label: 'Datos',
+        icon: 'pi pi-file',
+        command: (e) => setTabViewStrategy(e.item.label),
+        component: <h1 className="title-lg">Datos</h1>,
+      },
+      {
+        label: 'Asociados',
+        icon: 'pi pi-user',
+        command: (e) => setTabViewStrategy(e.item.label),
+        component: <h1 className="title-lg">Asociados</h1>,
+      },
+      {
+        label: 'Agregar personas',
+        icon: 'pi pi-id-card',
+        command: (e) => setTabViewStrategy(e.item.label),
+        component: <h1 className="title-lg">Agregar</h1>,
+      },
     ];
   }, []);
+
+  const [tabViewStrategy, setTabViewStrategy] = useState<string>(tabs[0].label);
 
   const thisCampaign = useMemo(() => {
     return campaigns.find((campaign) => campaign.id.toString() == id);
@@ -40,6 +60,12 @@ const EditCampaigns: React.FC = () => {
           }}
           model={tabs}
         />
+      </div>
+
+      <div className="card w-full">
+        {tabs.map((_, i) => {
+          return tabViewStrategy == tabs[i].label && tabs[i].component;
+        })}
       </div>
     </div>
   );
