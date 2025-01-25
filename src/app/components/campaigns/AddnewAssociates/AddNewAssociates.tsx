@@ -43,7 +43,6 @@ const AddNewAssociates: React.FC<AddNewAssociatesProps> = ({
               </div>
             )}
             pt={{ header: { className: 'bg-primary-100' } }}
-            optionValue="name"
             optionLabel="name"
             placeholder="Selecciona nuevos asociados"
             maxSelectedLabels={100}
