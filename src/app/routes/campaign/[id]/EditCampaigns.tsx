@@ -4,16 +4,18 @@ import { useParams } from 'react-router-dom';
 import CampaignNotFound from '../CampaignNotFound';
 import { TabMenu } from 'primereact/tabmenu';
 
+interface Tab {
+  label: string;
+  icon: string;
+  command: (e: { item: Tab }) => void;
+  component: React.ReactNode;
+}
+
 const EditCampaigns: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { campaigns } = useCampaignStore();
 
-  const tabs: {
-    label: string;
-    icon: string;
-    command: (e: any) => void;
-    component: React.ReactNode;
-  }[] = useMemo(() => {
+  const tabs: Tab[] = useMemo(() => {
     return [
       {
         label: 'Datos',
