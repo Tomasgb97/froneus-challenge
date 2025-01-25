@@ -5,6 +5,7 @@ import CampaignNotFound from '../CampaignNotFound';
 import { TabMenu } from 'primereact/tabmenu';
 
 import { MenuItem } from 'primereact/menuitem';
+import DataDisplay from '@components/EditCampaign/DataDisplay/DataDisplay';
 
 interface Tab extends MenuItem {
   component?: React.ReactNode;
@@ -14,13 +15,21 @@ const EditCampaigns: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { campaigns } = useCampaignStore();
 
+  const thisCampaign = useMemo(() => {
+    return campaigns.find((campaign) => campaign.id.toString() == id);
+  }, [id, campaigns]);
+
+  if (!thisCampaign) {
+    return <CampaignNotFound />;
+  }
+
   const tabs: Tab[] = useMemo(() => {
     return [
       {
         label: 'Datos',
         icon: 'pi pi-file',
         command: (e) => setTabViewStrategy(e.item.label!),
-        component: <h1 className="title-lg">Datos</h1>,
+        component: <DataDisplay campaign={thisCampaign} />,
       },
       {
         label: 'Asociados',
@@ -41,14 +50,6 @@ const EditCampaigns: React.FC = () => {
     tabs[0].label!
   );
 
-  const thisCampaign = useMemo(() => {
-    return campaigns.find((campaign) => campaign.id.toString() == id);
-  }, [id, campaigns]);
-
-  if (!thisCampaign) {
-    return <CampaignNotFound />;
-  }
-
   return (
     <div className="w-full flex flex-col gap-10 items-center mt-auto ">
       <h1 className="title-md">Editar Campaña</h1>
@@ -65,7 +66,7 @@ const EditCampaigns: React.FC = () => {
         />
       </div>
 
-      <div className="card w-full">
+      <div className="w-full bg-slate-100 rounded-md p-3 shadow-sm">
         {tabs.map((_, i) => {
           return tabViewStrategy == tabs[i].label && tabs[i].component;
         })}
