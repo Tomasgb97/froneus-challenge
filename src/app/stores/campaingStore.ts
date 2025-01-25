@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { Campaign } from '@app/types/campaigns/campaign';
 import { CampaignStatus } from '@app/types/campaigns/status';
+import { Person } from '@app/types/person/person';
 
 interface CampaignStore {
   campaigns: Campaign[];
@@ -13,6 +14,7 @@ interface CampaignStore {
   populateCampaigns: (campaigns: Campaign[]) => void;
   setSelectedStatusFilterValue: (status: CampaignStatus | null) => void;
   setSelectedCampaignId: (id: number | null) => void;
+  addUsersToCampaign: (campaingId: number, newReceivers: Person[]) => void;
 }
 
 export const useCampaignStore = create(
@@ -52,6 +54,22 @@ export const useCampaignStore = create(
         set(() => ({
           selectedCampaignId: id,
         })),
+      addUsersToCampaign: (campaignId: number, newReceivers: Person[]) => {
+        const newReceiversId = newReceivers.map((receiver) => receiver.id);
+        set((state) => ({
+          campaigns: state.campaigns.map((campaign) =>
+            campaign.id === campaignId
+              ? {
+                  ...campaign,
+                  associatedReceivers: [
+                    ...(campaign.associatedReceivers || []),
+                    ...newReceiversId,
+                  ],
+                }
+              : campaign
+          ),
+        }));
+      },
     }),
     { name: 'campaign-items' }
   )
