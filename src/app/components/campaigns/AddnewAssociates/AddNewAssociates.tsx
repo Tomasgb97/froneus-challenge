@@ -24,9 +24,7 @@ const AddNewAssociates: React.FC<AddNewAssociatesProps> = ({
   }, [receivers, campaign.associatedReceivers]);
 
   const handleSelectChange = (e: MultiSelectChangeEvent) => {
-    console.log(e.value);
-    const newSelected = [...e.value];
-    setSelectedUsers((state) => newSelected);
+    setSelectedUsers([...e.value]);
   };
   return (
     <div className="flex flex-col items-center gap-9 ">
@@ -44,6 +42,7 @@ const AddNewAssociates: React.FC<AddNewAssociatesProps> = ({
                 {option.name} {option.surname}
               </div>
             )}
+            pt={{ header: { className: 'bg-primary-100' } }}
             optionValue="name"
             optionLabel="name"
             placeholder="Selecciona nuevos asociados"
