@@ -4,11 +4,10 @@ import { useParams } from 'react-router-dom';
 import CampaignNotFound from '../CampaignNotFound';
 import { TabMenu } from 'primereact/tabmenu';
 
-interface Tab {
-  label: string;
-  icon: string;
-  command: (e: { item: Tab }) => void;
-  component: React.ReactNode;
+import { MenuItem } from 'primereact/menuitem';
+
+interface Tab extends MenuItem {
+  component?: React.ReactNode;
 }
 
 const EditCampaigns: React.FC = () => {
@@ -20,25 +19,27 @@ const EditCampaigns: React.FC = () => {
       {
         label: 'Datos',
         icon: 'pi pi-file',
-        command: (e) => setTabViewStrategy(e.item.label),
+        command: (e) => setTabViewStrategy(e.item.label!),
         component: <h1 className="title-lg">Datos</h1>,
       },
       {
         label: 'Asociados',
         icon: 'pi pi-user',
-        command: (e) => setTabViewStrategy(e.item.label),
+        command: (e) => setTabViewStrategy(e.item.label!),
         component: <h1 className="title-lg">Asociados</h1>,
       },
       {
         label: 'Agregar personas',
         icon: 'pi pi-id-card',
-        command: (e) => setTabViewStrategy(e.item.label),
+        command: (e) => setTabViewStrategy(e.item.label!),
         component: <h1 className="title-lg">Agregar</h1>,
       },
     ];
   }, []);
 
-  const [tabViewStrategy, setTabViewStrategy] = useState<string>(tabs[0].label);
+  const [tabViewStrategy, setTabViewStrategy] = useState<string>(
+    tabs[0].label!
+  );
 
   const thisCampaign = useMemo(() => {
     return campaigns.find((campaign) => campaign.id.toString() == id);
