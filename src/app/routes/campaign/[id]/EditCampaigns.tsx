@@ -69,7 +69,7 @@ const EditCampaigns: React.FC = () => {
         />
       </div>
 
-      <div className="w-full bg-slate-100 rounded-md p-3 shadow-sm flex justify-center">
+      <div className="w-full min-h-96 bg-slate-100 rounded-md p-3 shadow-sm flex justify-center">
         {tabs.map((_, i) => {
           return tabViewStrategy == tabs[i].label && tabs[i].component;
         })}
