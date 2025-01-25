@@ -6,7 +6,7 @@ const CampaignNotFound: React.FC = () => {
   const navigate = useNavigate();
   return (
     <div className="w-full flex flex-col justify-center text-center items-center gap-2">
-      <h1 className="text-4xl text-white font-bold">Campaña no encontrada</h1>
+      <h1 className="title-md">Campaña no encontrada</h1>
       <p className="text-primary-300">
         La campaña que buscas no existe o no pudo ser encontrada.
       </p>

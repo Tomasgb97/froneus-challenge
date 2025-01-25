@@ -11,9 +11,7 @@ const CampaignsCardsGrid: React.FC = () => {
           <CampaignDisplayCardMobile key={campaign.id} campaign={campaign} />
         ))
       ) : (
-        <h1 className="text-2xl text-white font-bold">
-          No hay campañas disponibles
-        </h1>
+        <h1 className="title-sm">No hay campañas disponibles</h1>
       )}
     </div>
   );
