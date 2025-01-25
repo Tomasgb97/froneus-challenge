@@ -5,6 +5,7 @@ import CampaignNotFound from '../CampaignNotFound';
 import { TabMenu } from 'primereact/tabmenu';
 import { MenuItem } from 'primereact/menuitem';
 import CampaignDisplayCard from '@components/campaigns/campaignDisplayCard/CampaignDisplayCard';
+import Associates from '@components/campaigns/campaignAssociates/Associates';
 
 interface Tab extends MenuItem {
   component?: React.ReactNode;
@@ -36,7 +37,7 @@ const EditCampaigns: React.FC = () => {
         label: 'Asociados',
         icon: 'pi pi-user',
         command: (e) => setTabViewStrategy(e.item.label!),
-        component: <h1 className="title-lg">Asociados</h1>,
+        component: <Associates campaign={thisCampaign} />,
       },
       {
         label: 'Agregar personas',
