@@ -1,11 +1,22 @@
 import { useCampaignStore } from '@app/stores/campaingStore';
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CampaignNotFound from '../CampaignNotFound';
+import { TabMenu } from 'primereact/tabmenu';
 
 const EditCampaigns: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { campaigns } = useCampaignStore();
+
+  cosnt[(tabViewStrategy, setTabViewStrategy)] = useState();
+
+  const tabs: { label: string; icon: string }[] = useMemo(() => {
+    return [
+      { label: 'Datos', icon: 'pi pi-file' },
+      { label: 'Asociados', icon: 'pi pi-user' },
+      { label: 'Agregar personas', icon: 'pi pi-id-card' },
+    ];
+  }, []);
 
   const thisCampaign = useMemo(() => {
     return campaigns.find((campaign) => campaign.id.toString() == id);
@@ -16,12 +27,20 @@ const EditCampaigns: React.FC = () => {
   }
 
   return (
-    <div className="bg-red-500 w-full flex flex-col items-center gap-60">
-      <h1>Edit Campaign</h1>
-      <p>Editing campaign with ID: {id}</p>
-      <p>{thisCampaign.name}</p>
-
-      {/* Add your form and other components here */}
+    <div className="w-full flex flex-col gap-10 items-center mt-auto ">
+      <h1 className="title-md">Editar Campaña</h1>
+      <h3 className="title-md text-primary-300 text-center">
+        {thisCampaign.name}
+      </h3>
+      <div className="card w-full">
+        <TabMenu
+          pt={{
+            action: { className: 'px-2 py-3  md:p-5' },
+            menuitem: { className: 'text-gray-600 hover:text-primary-700' },
+          }}
+          model={tabs}
+        />
+      </div>
     </div>
   );
 };
