@@ -30,7 +30,9 @@ const EditCampaigns: React.FC = () => {
         label: 'Datos',
         icon: 'pi pi-file',
         command: (e) => setTabViewStrategy(e.item.label!),
-        component: <CampaignDisplayCard campaign={thisCampaign} />,
+        component: (
+          <CampaignDisplayCard hasButtons={false} campaign={thisCampaign} />
+        ),
       },
       {
         label: 'Asociados',
@@ -68,7 +70,7 @@ const EditCampaigns: React.FC = () => {
         />
       </div>
 
-      <div className="w-full bg-slate-100 rounded-md p-3 shadow-sm">
+      <div className="w-full bg-slate-100 rounded-md p-3 shadow-sm flex justify-center">
         {tabs.map((_, i) => {
           return tabViewStrategy == tabs[i].label && tabs[i].component;
         })}

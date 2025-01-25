@@ -9,10 +9,12 @@ import { useNavigate } from 'react-router';
 
 interface CampaignDisplayCardProps {
   campaign: Campaign;
+  hasButtons?: boolean;
 }
 
 const CampaignDisplayCard: React.FC<CampaignDisplayCardProps> = ({
   campaign,
+  hasButtons = true,
 }) => {
   const navigate = useNavigate();
   const { setSelectedCampaignId } = useCampaignStore();
@@ -54,7 +56,7 @@ const CampaignDisplayCard: React.FC<CampaignDisplayCardProps> = ({
       <Card
         title={campaign.name}
         subTitle={campaign.status}
-        footer={footer}
+        footer={hasButtons && footer}
         header={header}
         className="md:w-25rem"
         pt={{ subTitle: { className: statusTextStyle } }}
