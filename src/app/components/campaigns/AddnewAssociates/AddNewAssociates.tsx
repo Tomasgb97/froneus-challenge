@@ -32,7 +32,7 @@ const AddNewAssociates: React.FC<AddNewAssociatesProps> = ({
       <p>Aqui puedes agregar a mas usuarios a esta campaña</p>
 
       <div className="flex flex-col items-center gap-4">
-        <div className="max-h-12 max-w-80">
+        <div className="max-h-12 w-64">
           <MultiSelect
             value={selectedUsers}
             onChange={(e: MultiSelectChangeEvent) => handleSelectChange(e)}
@@ -55,6 +55,7 @@ const AddNewAssociates: React.FC<AddNewAssociatesProps> = ({
           className="text-white bg-green-600 p-2"
           icon="pi pi-check"
           label="Guardar en Campaña"
+          disabled={selectedUsers.length == 0}
         ></Button>
       </div>
 
