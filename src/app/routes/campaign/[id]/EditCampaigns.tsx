@@ -6,6 +6,7 @@ import { TabMenu } from 'primereact/tabmenu';
 
 import { MenuItem } from 'primereact/menuitem';
 import DataDisplay from '@components/EditCampaign/DataDisplay/DataDisplay';
+import CampaignDisplayCard from '@components/campaigns/campaignDisplayCard/CampaignDisplayCard';
 
 interface Tab extends MenuItem {
   component?: React.ReactNode;
@@ -29,7 +30,7 @@ const EditCampaigns: React.FC = () => {
         label: 'Datos',
         icon: 'pi pi-file',
         command: (e) => setTabViewStrategy(e.item.label!),
-        component: <DataDisplay campaign={thisCampaign} />,
+        component: <CampaignDisplayCard campaign={thisCampaign} />,
       },
       {
         label: 'Asociados',

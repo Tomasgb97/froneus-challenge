@@ -7,11 +7,11 @@ import { Card } from 'primereact/card';
 import React, { useMemo } from 'react';
 import { useNavigate } from 'react-router';
 
-interface CampaignDisplayCardMobileProps {
+interface CampaignDisplayCardProps {
   campaign: Campaign;
 }
 
-const CampaignDisplayCardMobile: React.FC<CampaignDisplayCardMobileProps> = ({
+const CampaignDisplayCard: React.FC<CampaignDisplayCardProps> = ({
   campaign,
 }) => {
   const navigate = useNavigate();
@@ -82,4 +82,4 @@ const CampaignDisplayCardMobile: React.FC<CampaignDisplayCardMobileProps> = ({
   );
 };
 
-export default CampaignDisplayCardMobile;
+export default CampaignDisplayCard;
