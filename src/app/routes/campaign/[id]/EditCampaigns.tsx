@@ -58,6 +58,7 @@ const EditCampaigns: React.FC = () => {
       </h3>
       <div className="card w-full">
         <TabMenu
+          className="rounded-md"
           pt={{
             action: { className: 'px-2 py-3  md:p-5' },
             menuitem: { className: 'text-gray-600 hover:text-primary-700' },
