@@ -4,6 +4,7 @@ import { ListBox } from 'primereact/listbox';
 import React, { useMemo, useState } from 'react';
 import { Dialog } from 'primereact/dialog';
 import { Person } from '@app/types/person/person';
+import { useCampaignStore } from '@app/stores/campaingStore';
 
 interface AssociatesProps {
   campaign: Campaign;
@@ -13,6 +14,7 @@ const Associates: React.FC<AssociatesProps> = ({
   campaign,
 }: AssociatesProps) => {
   const { receivers } = useReceiverStore();
+  const { campaigns } = useCampaignStore();
   const [selectedReceiver, setSelectedReceiver] = useState<Person | null>(null);
   const associatedRecievers = useMemo(() => {
     return receivers.filter((reciever) =>
@@ -32,6 +34,21 @@ const Associates: React.FC<AssociatesProps> = ({
       >
         <span className="font-bold ">Teléfono: </span>{' '}
         <p className="text-primary-300">{selectedReceiver?.phone}</p>
+        <h1 className="font-bold mt-5">Campañas asocidas</h1>
+        {selectedReceiver?.associatedCampaigns.map((campaignId, i) => {
+          const matchingCamapaing = campaigns.find(
+            (campaign) => campaign.id == campaignId
+          );
+          if (matchingCamapaing)
+            return (
+              <li
+                key={i}
+                className="text-primary-300 hover:text-primary-600 transition"
+              >
+                <a href={`/campaign/${campaignId}`}>{matchingCamapaing.name}</a>
+              </li>
+            );
+        })}
       </Dialog>
     );
   };
