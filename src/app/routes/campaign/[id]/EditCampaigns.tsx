@@ -5,7 +5,6 @@ import CampaignNotFound from '../CampaignNotFound';
 import { TabMenu } from 'primereact/tabmenu';
 
 import { MenuItem } from 'primereact/menuitem';
-import DataDisplay from '@components/EditCampaign/DataDisplay/DataDisplay';
 import CampaignDisplayCard from '@components/campaigns/campaignDisplayCard/CampaignDisplayCard';
 
 interface Tab extends MenuItem {
