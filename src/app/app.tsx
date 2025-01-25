@@ -4,7 +4,7 @@ import { useEffect, useMemo } from 'react';
 import { useCampaignStore } from './stores/campaingStore';
 import { data } from '@app/data/mock';
 import Campaigns from './routes/campaigns/Campaigns';
-import { useReceiverStore } from './stores/recieversStore';
+import { useReceiverStore } from '@app/stores/receiversStore';
 import Home from './routes/home/Home';
 import Footer from '@components/layout/footer/Footer';
 import EditCampaigns from './routes/campaign/[id]/EditCampaigns';

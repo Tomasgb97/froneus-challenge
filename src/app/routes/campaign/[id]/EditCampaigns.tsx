@@ -6,6 +6,7 @@ import { TabMenu } from 'primereact/tabmenu';
 import { MenuItem } from 'primereact/menuitem';
 import CampaignDisplayCard from '@components/campaigns/campaignDisplayCard/CampaignDisplayCard';
 import Associates from '@components/campaigns/campaignAssociates/Associates';
+import AddNewAssociates from '@components/campaigns/AddnewAssociates/AddNewAssociates';
 
 interface Tab extends MenuItem {
   component?: React.ReactNode;
@@ -43,7 +44,7 @@ const EditCampaigns: React.FC = () => {
         label: 'Agregar personas',
         icon: 'pi pi-id-card',
         command: (e) => setTabViewStrategy(e.item.label!),
-        component: <h1 className="title-lg">Agregar</h1>,
+        component: <AddNewAssociates campaign={thisCampaign} />,
       },
     ];
   }, []);

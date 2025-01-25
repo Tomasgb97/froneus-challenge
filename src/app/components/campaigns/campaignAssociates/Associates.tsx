@@ -1,4 +1,4 @@
-import { useReceiverStore } from '@app/stores/recieversStore';
+import { useReceiverStore } from '@app/stores/receiversStore';
 import { Campaign } from '@app/types/campaigns/campaign';
 import { ListBox } from 'primereact/listbox';
 import React, { useMemo, useState } from 'react';
@@ -16,10 +16,15 @@ const Associates: React.FC<AssociatesProps> = ({
   const { receivers } = useReceiverStore();
   const { campaigns } = useCampaignStore();
   const [selectedReceiver, setSelectedReceiver] = useState<Person | null>(null);
-  const associatedRecievers = useMemo(() => {
-    return receivers.filter((reciever) =>
-      reciever.associatedCampaigns.includes(campaign.id)
-    );
+  const associatedReceivers = useMemo(() => {
+    let thisCampaignReceivers: Person[] = [];
+    campaign.associatedReceivers.forEach((receiverId) => {
+      const associatedPerson = receivers.find((rec) => rec.id == receiverId);
+      if (associatedPerson) {
+        thisCampaignReceivers.push(associatedPerson);
+      }
+    });
+    return thisCampaignReceivers;
   }, [campaign, receivers]);
 
   const InfoDialog = () => {
@@ -64,7 +69,7 @@ const Associates: React.FC<AssociatesProps> = ({
             console.log(e);
             setSelectedReceiver(e.value);
           }}
-          options={associatedRecievers}
+          options={associatedReceivers}
           itemTemplate={(option) => (
             <div className="hover:text-primary-300">
               {option.name} {option.surname}
