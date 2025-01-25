@@ -16,7 +16,7 @@ const EditCampaigns: React.FC = () => {
   }
 
   return (
-    <div>
+    <div className="bg-red-500 w-full flex flex-col items-center gap-60">
       <h1>Edit Campaign</h1>
       <p>Editing campaign with ID: {id}</p>
       <p>{thisCampaign.name}</p>

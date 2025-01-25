@@ -25,7 +25,7 @@ const Campaigns: React.FC = () => {
         onReject={() => setSelectedCampaignId(null)}
       />
 
-      <h1 className="text-7xl text-white font-bold">Maneja tus campañas</h1>
+      <h1 className="title-lg">Maneja tus campañas</h1>
       <Divider layout="horizontal" className="flex h-0.5 bg-primary-900" />
       <div className=" hidden md:flex">
         <CampaignsTable />
