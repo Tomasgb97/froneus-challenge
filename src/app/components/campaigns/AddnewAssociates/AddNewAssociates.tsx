@@ -55,6 +55,7 @@ const AddNewAssociates: React.FC<AddNewAssociatesProps> = ({
           icon="pi pi-check"
           label="Guardar en Campaña"
           disabled={selectedUsers.length == 0}
+          onClickCapture={}
         ></Button>
       </div>
 
