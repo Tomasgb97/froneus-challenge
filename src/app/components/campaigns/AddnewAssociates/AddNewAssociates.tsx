@@ -6,6 +6,7 @@ import { Button } from 'primereact/button';
 import { useNavigate } from 'react-router';
 import { Person } from '@app/types/person/person';
 import useAddUsersToCampaign from '@hooks/addReceiversToCampaignHook';
+import { Toast } from 'primereact/toast';
 
 interface AddNewAssociatesProps {
   campaign: Campaign;
@@ -14,7 +15,7 @@ const AddNewAssociates: React.FC<AddNewAssociatesProps> = ({
   campaign,
 }: AddNewAssociatesProps) => {
   const { receivers } = useReceiverStore();
-  const addReceivers = useAddUsersToCampaign();
+  const { addReceivers, addReceiverToastRef } = useAddUsersToCampaign();
   const navigate = useNavigate();
   const [selectedUsers, setSelectedUsers] = useState<Person[]>([]);
 
@@ -30,6 +31,7 @@ const AddNewAssociates: React.FC<AddNewAssociatesProps> = ({
   };
   return (
     <div className="flex flex-col items-center gap-9 ">
+      <Toast ref={addReceiverToastRef} />
       <h1 className="title-md text-primary-300">Agregalos</h1>
       <p>Aqui puedes agregar a mas usuarios a esta campaña</p>
 
@@ -57,7 +59,10 @@ const AddNewAssociates: React.FC<AddNewAssociatesProps> = ({
           icon="pi pi-check"
           label="Guardar en Campaña"
           disabled={selectedUsers.length == 0}
-          onClickCapture={() => addReceivers(campaign.id, selectedUsers)}
+          onClickCapture={() => {
+            addReceivers(campaign.id, selectedUsers);
+            setSelectedUsers([]);
+          }}
         ></Button>
       </div>
 
