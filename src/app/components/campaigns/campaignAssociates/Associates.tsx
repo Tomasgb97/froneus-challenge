@@ -64,6 +64,7 @@ const Associates: React.FC<AssociatesProps> = ({
       <h1 className="text-primary-300">Asociados a la campaña</h1>
       <div className=" flex justify-content-center">
         <ListBox
+          listClassName="h-72"
           filter
           onChange={(e) => {
             console.log(e);
