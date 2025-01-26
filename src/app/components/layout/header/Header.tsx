@@ -28,6 +28,13 @@ const Header: React.FC = () => {
         },
         icon: 'pi pi-clipboard',
       },
+      {
+        label: 'Crear Campaña',
+        command: () => {
+          navigate('/campaigns/new');
+        },
+        icon: 'pi pi-plus',
+      },
     ];
   }, []);
   return (
