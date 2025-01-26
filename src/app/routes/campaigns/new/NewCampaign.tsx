@@ -118,7 +118,7 @@ const NewCampaign: React.FC = () => {
             <Controller
               name="campaign-receivers"
               control={control}
-              rules={{ required: 'Este campo es obligatorio' }} // Add a custom error message
+              rules={{ required: 'Este campo es obligatorio' }}
               render={({ field, fieldState }) => (
                 <div>
                   <MultiSelect
@@ -153,7 +153,7 @@ const NewCampaign: React.FC = () => {
             <Controller
               name="campaign-status"
               control={control}
-              rules={{ required: 'Este campo es obligatorio' }} // Add a custom error message
+              rules={{ required: 'Este campo es obligatorio' }}
               render={({ field, fieldState }) => (
                 <div>
                   <ListBox
