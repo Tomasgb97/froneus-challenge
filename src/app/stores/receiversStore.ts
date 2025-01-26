@@ -21,12 +21,11 @@ export const useReceiverStore = create(
         })),
       addReceiver: (receiver) =>
         set((state) => {
-          const existingReceiver = state.receivers.find(
-            (r) => r.id == receiver.id
-          );
-          if (existingReceiver) return state;
+          const newRecieverId = state.receivers.length + 1;
 
-          return { receivers: [...state.receivers, receiver] };
+          return {
+            receivers: [...state.receivers, { ...receiver, id: newRecieverId }],
+          };
         }),
       clearReceivers: () => {
         set(() => {
