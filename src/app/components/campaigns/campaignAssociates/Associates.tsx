@@ -67,7 +67,6 @@ const Associates: React.FC<AssociatesProps> = ({
           listClassName="h-72"
           filter
           onChange={(e) => {
-            console.log(e);
             setSelectedReceiver(e.value);
           }}
           options={associatedReceivers}
