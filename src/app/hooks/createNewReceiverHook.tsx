@@ -4,7 +4,8 @@ import useAddUsersToCampaign from './addReceiversToCampaignHook';
 import { useState } from 'react';
 
 const useCreateNewReceiver = () => {
-  const [showCreateNewUserDialog, setShowNewUserDialog] = useState(true);
+  const [showCreateNewReceiverDialog, setShowNewReceiverDialog] =
+    useState(true);
   const { receivers } = useReceiverStore();
   const { addReceivers } = useAddUsersToCampaign();
 
@@ -32,8 +33,8 @@ const useCreateNewReceiver = () => {
   };
 
   return {
-    showCreateNewUserDialog,
-    setShowNewUserDialog,
+    showCreateNewReceiverDialog,
+    setShowNewReceiverDialog,
     createNewReceiver,
   };
 };

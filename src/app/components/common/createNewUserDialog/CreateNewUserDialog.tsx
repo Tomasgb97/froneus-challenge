@@ -11,8 +11,8 @@ import { Controller, useForm } from 'react-hook-form';
 import createReceiverFileds from './fields';
 import { Campaign } from '@app/types/campaigns/campaign';
 
-const CreateNewUserDialog: React.FC = ({}) => {
-  const { setShowNewUserDialog, showCreateNewUserDialog } =
+const CreateNewReceiverDialog: React.FC = ({}) => {
+  const { setShowNewReceiverDialog, showCreateNewReceiverDialog } =
     useCreateNewReceiver();
   const { campaigns } = useCampaignStore();
 
@@ -33,9 +33,9 @@ const CreateNewUserDialog: React.FC = ({}) => {
 
   return (
     <Dialog
-      visible={showCreateNewUserDialog}
+      visible={showCreateNewReceiverDialog}
       onHide={() => {
-        setShowNewUserDialog(false);
+        setShowNewReceiverDialog(false);
       }}
       className="min-w-80  md:w-[40rem]"
     >
@@ -128,4 +128,4 @@ const CreateNewUserDialog: React.FC = ({}) => {
   );
 };
 
-export default CreateNewUserDialog;
+export default CreateNewReceiverDialog;

@@ -17,8 +17,11 @@ const AddNewAssociates: React.FC<AddNewAssociatesProps> = ({
 }: AddNewAssociatesProps) => {
   const { receivers } = useReceiverStore();
   const { addReceivers, addReceiverToastRef } = useAddUsersToCampaign();
-  const { createNewReceiver, setShowNewUserDialog, showCreateNewUserDialog } =
-    useCreateNewReceiver();
+  const {
+    createNewReceiver,
+    setShowNewReceiverDialog,
+    showCreateNewReceiverDialog,
+  } = useCreateNewReceiver();
   const navigate = useNavigate();
   const [selectedUsers, setSelectedUsers] = useState<Person[]>([]);
 
@@ -77,7 +80,7 @@ const AddNewAssociates: React.FC<AddNewAssociatesProps> = ({
       <Button
         link
         onClick={() => {
-          setShowNewUserDialog(true);
+          setShowNewReceiverDialog(true);
         }}
         className="text-white bg-primary-600 p-2"
         icon="pi pi-user-plus"
