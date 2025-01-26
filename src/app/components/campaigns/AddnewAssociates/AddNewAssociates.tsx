@@ -3,7 +3,6 @@ import { MultiSelect, MultiSelectChangeEvent } from 'primereact/multiselect';
 import { useReceiverStore } from '@app/stores/receiversStore';
 import { Campaign } from '@app/types/campaigns/campaign';
 import { Button } from 'primereact/button';
-import { useNavigate } from 'react-router';
 import { Person } from '@app/types/person/person';
 import useAddUsersToCampaign from '@hooks/addReceiversToCampaignHook';
 import { Toast } from 'primereact/toast';
@@ -16,13 +15,9 @@ const AddNewAssociates: React.FC<AddNewAssociatesProps> = ({
   campaign,
 }: AddNewAssociatesProps) => {
   const { receivers } = useReceiverStore();
-  const { addReceivers } = useAddUsersToCampaign();
-  const {
-    createNewReceiver,
-    setShowNewReceiverDialog,
-    showCreateNewReceiverDialog,
-  } = useCreateNewReceiver();
-  const navigate = useNavigate();
+  const { addReceivers, addReceiverToastRef } = useAddUsersToCampaign();
+  const { setShowCreateNewReceiverDialog, showCreateNewReceiverDialog } =
+    useCreateNewReceiver();
   const [selectedUsers, setSelectedUsers] = useState<Person[]>([]);
 
   //this is not pretty performant, should be retrieved from a backend.
@@ -35,8 +30,10 @@ const AddNewAssociates: React.FC<AddNewAssociatesProps> = ({
   const handleSelectChange = (e: MultiSelectChangeEvent) => {
     setSelectedUsers([...e.value]);
   };
+
   return (
     <div className="flex flex-col items-center gap-9 ">
+      <Toast ref={addReceiverToastRef} />
       <h1 className="title-md text-primary-300">Agregalos</h1>
       <p>Aqui puedes agregar a mas usuarios a esta campaña</p>
 
@@ -77,9 +74,9 @@ const AddNewAssociates: React.FC<AddNewAssociatesProps> = ({
       </div>
 
       <Button
-        link
         onClick={() => {
-          setShowNewReceiverDialog(true);
+          const newstate = !showCreateNewReceiverDialog;
+          setShowCreateNewReceiverDialog(newstate);
         }}
         className="text-white bg-primary-600 p-2"
         icon="pi pi-user-plus"

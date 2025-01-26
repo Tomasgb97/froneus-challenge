@@ -7,6 +7,7 @@ import { MenuItem } from 'primereact/menuitem';
 import CampaignDisplayCard from '@components/campaigns/campaignDisplayCard/CampaignDisplayCard';
 import Associates from '@components/campaigns/campaignAssociates/Associates';
 import AddNewAssociates from '@components/campaigns/AddnewAssociates/AddNewAssociates';
+import CreateNewReceiverDialog from '@components/common/createNewReceiverDialog/CreateNewReceiverDialog';
 
 interface Tab extends MenuItem {
   component?: React.ReactNode;
@@ -31,20 +32,28 @@ const EditCampaigns: React.FC = () => {
         icon: 'pi pi-file',
         command: (e) => setTabViewStrategy(e.item.label!),
         component: (
-          <CampaignDisplayCard hasButtons={false} campaign={thisCampaign} />
+          <CampaignDisplayCard
+            hasButtons={false}
+            key={'tab-1-component'}
+            campaign={thisCampaign}
+          />
         ),
       },
       {
         label: 'Asociados',
         icon: 'pi pi-user',
         command: (e) => setTabViewStrategy(e.item.label!),
-        component: <Associates campaign={thisCampaign} />,
+        component: (
+          <Associates key={'tab-2-component'} campaign={thisCampaign} />
+        ),
       },
       {
         label: 'Agregar personas',
         icon: 'pi pi-id-card',
         command: (e) => setTabViewStrategy(e.item.label!),
-        component: <AddNewAssociates campaign={thisCampaign} />,
+        component: (
+          <AddNewAssociates key={'tab-3-component'} campaign={thisCampaign} />
+        ),
       },
     ];
   }, [thisCampaign]);
@@ -55,6 +64,7 @@ const EditCampaigns: React.FC = () => {
 
   return (
     <div className="w-full flex flex-col gap-10 items-center mt-auto ">
+      <CreateNewReceiverDialog />
       <h1 className="title-md">Editar Campaña</h1>
       <h3 className="title-md text-primary-300 text-center">
         {thisCampaign.name}

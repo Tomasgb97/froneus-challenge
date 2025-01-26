@@ -1,13 +1,17 @@
 import { useReceiverStore } from '@app/stores/receiversStore';
 import { Person } from '@app/types/person/person';
 import useAddUsersToCampaign from './addReceiversToCampaignHook';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const useCreateNewReceiver = () => {
-  const [showCreateNewReceiverDialog, setShowNewReceiverDialog] =
-    useState(true);
+  const [showCreateNewReceiverDialog, setShowCreateNewReceiverDialog] =
+    useState(() => false);
   const { receivers, addReceiver } = useReceiverStore();
   const { addReceivers } = useAddUsersToCampaign();
+
+  useEffect(() => {
+    showCreateNewReceiverDialog;
+  }, [showCreateNewReceiverDialog]);
 
   const createNewReceiver = ({
     name,
@@ -37,7 +41,7 @@ const useCreateNewReceiver = () => {
 
   return {
     showCreateNewReceiverDialog,
-    setShowNewReceiverDialog,
+    setShowCreateNewReceiverDialog,
     createNewReceiver,
   };
 };

@@ -13,7 +13,7 @@ import { CampaignStatus } from '@app/types/campaigns/status';
 
 const CreateNewReceiverDialog: React.FC = ({}) => {
   const {
-    setShowNewReceiverDialog,
+    setShowCreateNewReceiverDialog,
     showCreateNewReceiverDialog,
     createNewReceiver,
   } = useCreateNewReceiver();
@@ -40,7 +40,8 @@ const CreateNewReceiverDialog: React.FC = ({}) => {
       ),
     };
     reset();
-    setShowNewReceiverDialog(false);
+
+    setShowCreateNewReceiverDialog(false);
     createNewReceiver(receiverWithFormattedCampaigns);
   };
 
@@ -48,7 +49,9 @@ const CreateNewReceiverDialog: React.FC = ({}) => {
     <Dialog
       visible={showCreateNewReceiverDialog}
       onHide={() => {
-        setShowNewReceiverDialog(false);
+        if (!showCreateNewReceiverDialog) return;
+
+        setShowCreateNewReceiverDialog(false);
       }}
       className="min-w-80  md:w-[40rem]"
     >
@@ -59,8 +62,8 @@ const CreateNewReceiverDialog: React.FC = ({}) => {
         <form onSubmit={handleSubmit(onSubmit)}>
           {createReceiverFileds.map((dynamicField) => {
             return (
-              <>
-                <div key={dynamicField.name} className="flex flex-col gap-2">
+              <div key={dynamicField.name}>
+                <div className="flex flex-col gap-2">
                   <label
                     className="text-primary-300"
                     htmlFor={dynamicField.name}
@@ -74,6 +77,7 @@ const CreateNewReceiverDialog: React.FC = ({}) => {
                     render={({ field, fieldState }) => (
                       <>
                         <InputText
+                          key={field.name}
                           type={dynamicField.type}
                           maxLength={dynamicField.maxLength}
                           pt={{
@@ -96,7 +100,7 @@ const CreateNewReceiverDialog: React.FC = ({}) => {
                     )}
                   ></Controller>
                 </div>
-              </>
+              </div>
             );
           })}
 
@@ -110,6 +114,7 @@ const CreateNewReceiverDialog: React.FC = ({}) => {
               rules={{ required: 'Este campo es obligatorio' }}
               render={({ field }) => (
                 <MultiSelect
+                  key={field.name}
                   pt={{ header: { className: 'bg-primary-100' } }}
                   value={field.value}
                   options={campaignsToBeAdded}
@@ -117,7 +122,7 @@ const CreateNewReceiverDialog: React.FC = ({}) => {
                   optionLabel="name"
                   className="w-full overflow-x-hidden border-primary-300 border-2"
                   itemTemplate={(campaign) => (
-                    <div className="hover:text-primary-300">
+                    <div key={campaign.id} className="hover:text-primary-300">
                       {campaign.name}
                     </div>
                   )}
