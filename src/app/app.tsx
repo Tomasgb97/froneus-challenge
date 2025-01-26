@@ -8,6 +8,7 @@ import { useReceiverStore } from '@app/stores/receiversStore';
 import Home from './routes/home/Home';
 import Footer from '@components/layout/footer/Footer';
 import EditCampaigns from './routes/campaign/[id]/EditCampaigns';
+import CreateNewUserDialog from '@components/common/createNewUserDialog/CreateNewUserDialog';
 
 function App() {
   const { populateCampaigns } = useCampaignStore();
@@ -39,6 +40,7 @@ function App() {
   return (
     <>
       <main className="min-h-dvh flex flex-col items-center justify-between">
+        <CreateNewUserDialog />
         <Header />
         <section className="w-full max-w-container-max h-full flex justify-center">
           <Routes>
