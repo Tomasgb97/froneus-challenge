@@ -1,4 +1,3 @@
-import { validatePhoneNumber } from '@app/lib/regex';
 import { useCampaignStore } from '@app/stores/campaingStore';
 import useCreateNewReceiver from '@hooks/createNewReceiverHook';
 import { Button } from 'primereact/button';
@@ -23,6 +22,7 @@ const CreateNewReceiverDialog: React.FC = ({}) => {
     handleSubmit,
     control,
     formState: { errors },
+    reset,
   } = useForm();
 
   const onSubmit = (data: any) => {
@@ -32,6 +32,8 @@ const CreateNewReceiverDialog: React.FC = ({}) => {
         (campaign: Campaign) => campaign.id
       ),
     };
+    reset();
+    setShowNewReceiverDialog(false);
     createNewReceiver(receiverWithFormattedCampaigns);
   };
 

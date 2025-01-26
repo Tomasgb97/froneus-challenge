@@ -16,7 +16,7 @@ const AddNewAssociates: React.FC<AddNewAssociatesProps> = ({
   campaign,
 }: AddNewAssociatesProps) => {
   const { receivers } = useReceiverStore();
-  const { addReceivers, addReceiverToastRef } = useAddUsersToCampaign();
+  const { addReceivers } = useAddUsersToCampaign();
   const {
     createNewReceiver,
     setShowNewReceiverDialog,
@@ -37,7 +37,6 @@ const AddNewAssociates: React.FC<AddNewAssociatesProps> = ({
   };
   return (
     <div className="flex flex-col items-center gap-9 ">
-      <Toast ref={addReceiverToastRef} />
       <h1 className="title-md text-primary-300">Agregalos</h1>
       <p>Aqui puedes agregar a mas usuarios a esta campaña</p>
 

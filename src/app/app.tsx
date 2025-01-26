@@ -9,10 +9,13 @@ import Home from './routes/home/Home';
 import Footer from '@components/layout/footer/Footer';
 import EditCampaigns from './routes/campaign/[id]/EditCampaigns';
 import CreateNewReceiverDialog from '@components/common/createNewReceiverDialog/CreateNewReceiverDialog';
+import { Toast } from 'primereact/toast';
+import useAddUsersToCampaign from '@hooks/addReceiversToCampaignHook';
 
 function App() {
   const { populateCampaigns } = useCampaignStore();
   const { populateReceivers } = useReceiverStore();
+  const { addReceiverToastRef } = useAddUsersToCampaign();
   const PublicRoutes = useMemo(() => {
     return [
       { path: '/', component: <Home /> },
@@ -41,6 +44,7 @@ function App() {
     <>
       <main className="min-h-dvh flex flex-col items-center justify-between">
         <CreateNewReceiverDialog />
+        <Toast ref={addReceiverToastRef} />
         <Header />
         <section className="w-full max-w-container-max h-full flex justify-center">
           <Routes>

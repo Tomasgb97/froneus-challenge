@@ -6,7 +6,7 @@ import { useState } from 'react';
 const useCreateNewReceiver = () => {
   const [showCreateNewReceiverDialog, setShowNewReceiverDialog] =
     useState(true);
-  const { receivers } = useReceiverStore();
+  const { receivers, addReceiver } = useReceiverStore();
   const { addReceivers } = useAddUsersToCampaign();
 
   const createNewReceiver = ({
@@ -27,6 +27,9 @@ const useCreateNewReceiver = () => {
       phone,
       associatedCampaigns,
     };
+
+    addReceiver(newReceiver);
+
     associatedCampaigns.forEach((campaignId) =>
       addReceivers(campaignId, [newReceiver])
     );
