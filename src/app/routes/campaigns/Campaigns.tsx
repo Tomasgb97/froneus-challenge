@@ -2,7 +2,7 @@ import { useCampaignStore } from '@app/stores/campaingStore';
 import CampaignsTable from '@components/campaigns/campaignsTable/CampaignsTable';
 import CampaignsCardsGrid from '@components/mobile/campaigns/campaignsCardsGrid/CampaignsCardsGrids';
 import { Divider } from 'primereact/divider';
-import CustomConfirmDialog from '@components/common/confirmDialog';
+import CustomConfirmDialog from '@components/common/createNewUserDialog/confirmDialog/confirmDialog';
 import React from 'react';
 
 const Campaigns: React.FC = () => {
