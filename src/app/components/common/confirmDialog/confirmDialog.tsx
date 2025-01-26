@@ -30,7 +30,7 @@ export default function CustomconfirmDialog({
 
   const reject = () => {
     onReject && onReject();
-    fireToast('Has cancelado', 'info');
+    fireToast('Has cancelado', 'warn');
   };
 
   return (
