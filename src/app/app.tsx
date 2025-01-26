@@ -11,6 +11,7 @@ import EditCampaigns from './routes/campaign/[id]/EditCampaigns';
 import CreateNewReceiverModal from '@components/common/createNewReceiverModal/CreateNewReceiverModal';
 import { Toast } from 'primereact/toast';
 import useToastStore from './stores/UI/toastStore';
+import NewCampaign from './routes/campaigns/new/NewCampaign';
 
 function App() {
   const { populateCampaigns } = useCampaignStore();
@@ -21,6 +22,7 @@ function App() {
     return [
       { path: '/', component: <Home /> },
       { path: '/campaigns', component: <Campaigns /> },
+      { path: '/campaigns/new', component: <NewCampaign /> },
       { path: '/campaign/:id', component: <EditCampaigns /> },
     ];
   }, []);
