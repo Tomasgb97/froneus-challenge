@@ -47,7 +47,7 @@ const EditCampaigns: React.FC = () => {
         component: <AddNewAssociates campaign={thisCampaign} />,
       },
     ];
-  }, []);
+  }, [thisCampaign]);
 
   const [tabViewStrategy, setTabViewStrategy] = useState<string>(
     tabs[0].label!

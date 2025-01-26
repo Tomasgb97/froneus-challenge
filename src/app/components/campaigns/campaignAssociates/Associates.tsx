@@ -25,7 +25,7 @@ const Associates: React.FC<AssociatesProps> = ({
       }
     });
     return thisCampaignReceivers;
-  }, [campaign, receivers]);
+  }, [campaign, receivers, selectedReceiver]);
 
   const InfoDialog = () => {
     return (
