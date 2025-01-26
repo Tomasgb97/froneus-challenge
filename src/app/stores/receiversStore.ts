@@ -8,7 +8,7 @@ interface ReceiverStore {
   removeReceiver: (id: number) => void;
   clearReceivers: () => void;
   populateReceivers: (receivers: Person[]) => void;
-  addCampaignToReceiver: (receivers: Person[], campaignId: number)
+  addCampaignToReceiver: (receivers: Person[], campaignId: number);
 }
 
 export const useReceiverStore = create(

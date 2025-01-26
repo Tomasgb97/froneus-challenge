@@ -5,6 +5,7 @@ import { Campaign } from '@app/types/campaigns/campaign';
 import { Button } from 'primereact/button';
 import { useNavigate } from 'react-router';
 import { Person } from '@app/types/person/person';
+import useAddUsersToCampaign from '@hooks/addReceiversToCampaignHook';
 
 interface AddNewAssociatesProps {
   campaign: Campaign;
@@ -13,6 +14,7 @@ const AddNewAssociates: React.FC<AddNewAssociatesProps> = ({
   campaign,
 }: AddNewAssociatesProps) => {
   const { receivers } = useReceiverStore();
+  const addReceivers = useAddUsersToCampaign();
   const navigate = useNavigate();
   const [selectedUsers, setSelectedUsers] = useState<Person[]>([]);
 
@@ -55,7 +57,7 @@ const AddNewAssociates: React.FC<AddNewAssociatesProps> = ({
           icon="pi pi-check"
           label="Guardar en Campaña"
           disabled={selectedUsers.length == 0}
-          onClickCapture={}
+          onClickCapture={() => addReceivers(campaign.id, selectedUsers)}
         ></Button>
       </div>
 
