@@ -7,6 +7,7 @@ import { InputSwitch } from 'primereact/inputswitch';
 import { InputText } from 'primereact/inputtext';
 import { ListBox } from 'primereact/listbox';
 import { MultiSelect } from 'primereact/multiselect';
+import { SelectButton } from 'primereact/selectbutton';
 import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
@@ -85,9 +86,12 @@ const NewCampaign: React.FC = () => {
               <Controller
                 name="campaign-start"
                 control={control}
-                rules={{ required: 'Este campo es obligatorio' }}
+                rules={{
+                  required: 'Este campo es obligatorio si no activas el switch',
+                }}
                 render={({ field, fieldState }) => (
                   <div className="flex flex-col">
+                    <small>Selecciona una fecha de inicio:</small>
                     <Calendar
                       showIcon
                       className={`rounded-lg border-none border-slate-100 ${
@@ -118,7 +122,6 @@ const NewCampaign: React.FC = () => {
             <Controller
               name="campaign-receivers"
               control={control}
-              rules={{ required: 'Este campo es obligatorio' }}
               render={({ field, fieldState }) => (
                 <div>
                   <MultiSelect
@@ -132,6 +135,39 @@ const NewCampaign: React.FC = () => {
                     placeholder="Selecciona quienes recibiran las llamadas"
                     className={`w-full ${fieldState.error ? 'p-invalid' : ''}`}
                     {...field}
+                  />
+                  {fieldState.error && (
+                    <small className="p-error">
+                      {fieldState.error.message}
+                    </small>
+                  )}
+                </div>
+              )}
+            />
+          </div>
+
+          <div className="flex flex-col gap-2 mb-10">
+            <label
+              className="text-primary-300 font-semibold"
+              htmlFor="campaign-recording"
+            >
+              ¿Quieres grabar estos llamados?
+            </label>
+            <Controller
+              name="campaign-recording"
+              control={control}
+              rules={{ required: 'Este campo es obligatorio' }}
+              render={({ field, fieldState }) => (
+                <div>
+                  <SelectButton
+                    {...field}
+                    options={[
+                      { label: 'Si', value: true },
+                      { label: 'No', value: false },
+                    ]}
+                    optionLabel="label"
+                    optionValue="value"
+                    className={`w-full ${fieldState.error ? 'p-invalid' : ''}`}
                   />
                   {fieldState.error && (
                     <small className="p-error">
