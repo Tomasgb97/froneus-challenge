@@ -56,19 +56,25 @@ export const useCampaignStore = create(
         })),
       addUsersToCampaign: (campaignId: number, newReceivers: Person[]) => {
         const newReceiversId = newReceivers.map((receiver) => receiver.id);
-        set((state) => ({
-          campaigns: state.campaigns.map((campaign) =>
-            campaign.id === campaignId
-              ? {
-                  ...campaign,
-                  associatedReceivers: [
-                    ...(campaign.associatedReceivers || []),
-                    ...newReceiversId,
-                  ],
-                }
-              : campaign
-          ),
-        }));
+
+        set((state) => {
+          const updatedCampaigns = [...state.campaigns];
+
+          for (let i = 0; i < updatedCampaigns.length; i++) {
+            if (updatedCampaigns[i].id === campaignId) {
+              updatedCampaigns[i] = {
+                ...updatedCampaigns[i],
+                associatedReceivers: [
+                  ...(updatedCampaigns[i].associatedReceivers || []),
+                  ...newReceiversId,
+                ],
+              };
+              break;
+            }
+          }
+
+          return { campaigns: updatedCampaigns };
+        });
       },
     }),
     { name: 'campaign-items' }
