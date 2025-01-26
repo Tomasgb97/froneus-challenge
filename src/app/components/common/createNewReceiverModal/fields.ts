@@ -14,8 +14,15 @@ const createReceiverFileds: FieldItem[] = [
     name: 'name',
     label: 'Nombre',
     type: 'text',
-    rules: { required: 'Este campo es obligatorio' },
-    maxLength: 20,
+    rules: {
+      required: 'Este campo es obligatorio',
+      minLength: {
+        value: 5,
+        message: 'EL nombre debe tener al menos 5 caracteres',
+      },
+      maxLength: 20,
+    },
+
     placeholder: '',
   },
   {

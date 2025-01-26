@@ -39,7 +39,13 @@ const NewCampaign: React.FC = () => {
             <Controller
               name="campaign-name"
               control={control}
-              rules={{ required: true }}
+              rules={{
+                required: 'Este campo es obligatorio',
+                minLength: {
+                  value: 5,
+                  message: 'EL nombre debe tener al menos 5 caracteres',
+                },
+              }}
               render={({ field, fieldState }) => (
                 <>
                   <InputText
