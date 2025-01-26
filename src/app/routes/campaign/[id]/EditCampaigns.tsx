@@ -7,7 +7,6 @@ import { MenuItem } from 'primereact/menuitem';
 import CampaignDisplayCard from '@components/campaigns/campaignDisplayCard/CampaignDisplayCard';
 import Associates from '@components/campaigns/campaignAssociates/Associates';
 import AddNewAssociates from '@components/campaigns/AddnewAssociates/AddNewAssociates';
-import CreateNewReceiverDialog from '@components/common/createNewReceiverDialog/CreateNewReceiverDialog';
 
 interface Tab extends MenuItem {
   component?: React.ReactNode;
@@ -64,7 +63,6 @@ const EditCampaigns: React.FC = () => {
 
   return (
     <div className="w-full flex flex-col gap-10 items-center mt-auto ">
-      <CreateNewReceiverDialog />
       <h1 className="title-md">Editar Campaña</h1>
       <h3 className="title-md text-primary-300 text-center">
         {thisCampaign.name}

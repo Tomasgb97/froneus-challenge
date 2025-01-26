@@ -8,6 +8,7 @@ import { useReceiverStore } from '@app/stores/receiversStore';
 import Home from './routes/home/Home';
 import Footer from '@components/layout/footer/Footer';
 import EditCampaigns from './routes/campaign/[id]/EditCampaigns';
+import CreateNewReceiverModal from '@components/common/createNewReceiverModal/CreateNewReceiverModal';
 
 function App() {
   const { populateCampaigns } = useCampaignStore();
@@ -40,7 +41,7 @@ function App() {
     <>
       <main className="min-h-dvh flex flex-col items-center justify-between">
         <Header />
-
+        <CreateNewReceiverModal />
         <section className="w-full max-w-container-max h-full flex justify-center">
           <Routes>
             {PublicRoutes.map((rout, i) => {

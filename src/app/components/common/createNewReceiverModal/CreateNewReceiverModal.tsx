@@ -10,14 +10,13 @@ import { Controller, useForm } from 'react-hook-form';
 import createReceiverFileds from './fields';
 import { Campaign } from '@app/types/campaigns/campaign';
 import { CampaignStatus } from '@app/types/campaigns/status';
+import useUIStore from '@app/stores/uiStore';
 
-const CreateNewReceiverDialog: React.FC = ({}) => {
-  const {
-    setShowCreateNewReceiverDialog,
-    showCreateNewReceiverDialog,
-    createNewReceiver,
-  } = useCreateNewReceiver();
+const CreateNewReceiverModal: React.FC = ({}) => {
+  const { createNewReceiver } = useCreateNewReceiver();
   const { campaigns } = useCampaignStore();
+  const { toggleCreateNewReceiverModal, showCreateNewReceiverModal } =
+    useUIStore();
 
   const campaignsToBeAdded = useMemo(() => {
     return campaigns.filter(
@@ -40,18 +39,17 @@ const CreateNewReceiverDialog: React.FC = ({}) => {
       ),
     };
     reset();
-
-    setShowCreateNewReceiverDialog(false);
+    toggleCreateNewReceiverModal();
     createNewReceiver(receiverWithFormattedCampaigns);
   };
 
   return (
     <Dialog
-      visible={showCreateNewReceiverDialog}
+      visible={showCreateNewReceiverModal}
       onHide={() => {
-        if (!showCreateNewReceiverDialog) return;
+        if (!showCreateNewReceiverModal) return;
 
-        setShowCreateNewReceiverDialog(false);
+        toggleCreateNewReceiverModal();
       }}
       className="min-w-80  md:w-[40rem]"
     >
@@ -146,4 +144,4 @@ const CreateNewReceiverDialog: React.FC = ({}) => {
   );
 };
 
-export default CreateNewReceiverDialog;
+export default CreateNewReceiverModal;

@@ -6,7 +6,7 @@ import { Button } from 'primereact/button';
 import { Person } from '@app/types/person/person';
 import useAddUsersToCampaign from '@hooks/addReceiversToCampaignHook';
 import { Toast } from 'primereact/toast';
-import useCreateNewReceiver from '@hooks/createNewReceiverHook';
+import useUIStore from '@app/stores/uiStore';
 
 interface AddNewAssociatesProps {
   campaign: Campaign;
@@ -16,8 +16,7 @@ const AddNewAssociates: React.FC<AddNewAssociatesProps> = ({
 }: AddNewAssociatesProps) => {
   const { receivers } = useReceiverStore();
   const { addReceivers, addReceiverToastRef } = useAddUsersToCampaign();
-  const { setShowCreateNewReceiverDialog, showCreateNewReceiverDialog } =
-    useCreateNewReceiver();
+  const { toggleCreateNewReceiverModal } = useUIStore();
   const [selectedUsers, setSelectedUsers] = useState<Person[]>([]);
 
   //this is not pretty performant, should be retrieved from a backend.
@@ -75,8 +74,7 @@ const AddNewAssociates: React.FC<AddNewAssociatesProps> = ({
 
       <Button
         onClick={() => {
-          const newstate = !showCreateNewReceiverDialog;
-          setShowCreateNewReceiverDialog(newstate);
+          toggleCreateNewReceiverModal();
         }}
         className="text-white bg-primary-600 p-2"
         icon="pi pi-user-plus"
