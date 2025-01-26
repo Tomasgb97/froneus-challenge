@@ -36,7 +36,28 @@ export const useReceiverStore = create(
         set(() => ({
           receivers: receivers,
         })),
+      addCampaignToReceiver: (newReceivers: Person[], campaignId: number) =>
+        set((state) => {
+          const existingReceiversMap = new Map(
+            state.receivers.map((existingReceiver) => [
+              existingReceiver.id,
+              existingReceiver,
+            ])
+          );
+
+          for (const newReceiver of newReceivers) {
+            const existingReceiver = existingReceiversMap.get(newReceiver.id);
+            if (existingReceiver) {
+              if (!existingReceiver.associatedCampaigns.includes(campaignId)) {
+                existingReceiver.associatedCampaigns.push(campaignId);
+              }
+            }
+          }
+
+          return { receivers: Array.from(existingReceiversMap.values()) };
+        }),
     }),
+
     { name: 'receiver-items' }
   )
 );
