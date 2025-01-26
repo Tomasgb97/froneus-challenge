@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router';
 import { Person } from '@app/types/person/person';
 import useAddUsersToCampaign from '@hooks/addReceiversToCampaignHook';
 import { Toast } from 'primereact/toast';
+import useCreateNewReceiver from '@hooks/createNewReceiverHook';
 
 interface AddNewAssociatesProps {
   campaign: Campaign;
@@ -16,6 +17,8 @@ const AddNewAssociates: React.FC<AddNewAssociatesProps> = ({
 }: AddNewAssociatesProps) => {
   const { receivers } = useReceiverStore();
   const { addReceivers, addReceiverToastRef } = useAddUsersToCampaign();
+  const { createNewReceiver, setShowNewUserDialog, showCreateNewUserDialog } =
+    useCreateNewReceiver();
   const navigate = useNavigate();
   const [selectedUsers, setSelectedUsers] = useState<Person[]>([]);
 
@@ -73,7 +76,9 @@ const AddNewAssociates: React.FC<AddNewAssociatesProps> = ({
 
       <Button
         link
-        onClick={() => navigate('/newUser')}
+        onClick={() => {
+          setShowNewUserDialog(true);
+        }}
         className="text-white bg-primary-600 p-2"
         icon="pi pi-user-plus"
         label="Agregar usuario"
