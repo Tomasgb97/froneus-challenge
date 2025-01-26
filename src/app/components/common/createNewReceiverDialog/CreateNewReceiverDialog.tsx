@@ -12,8 +12,11 @@ import createReceiverFileds from './fields';
 import { Campaign } from '@app/types/campaigns/campaign';
 
 const CreateNewReceiverDialog: React.FC = ({}) => {
-  const { setShowNewReceiverDialog, showCreateNewReceiverDialog } =
-    useCreateNewReceiver();
+  const {
+    setShowNewReceiverDialog,
+    showCreateNewReceiverDialog,
+    createNewReceiver,
+  } = useCreateNewReceiver();
   const { campaigns } = useCampaignStore();
 
   const {
@@ -29,6 +32,7 @@ const CreateNewReceiverDialog: React.FC = ({}) => {
         (campaign: Campaign) => campaign.id
       ),
     };
+    createNewReceiver(receiverWithFormattedCampaigns);
   };
 
   return (
