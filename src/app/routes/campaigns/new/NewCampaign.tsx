@@ -93,6 +93,8 @@ const NewCampaign: React.FC = () => {
                   <div className="flex flex-col">
                     <small>Selecciona una fecha de inicio:</small>
                     <Calendar
+                      locale="es"
+                      minDate={new Date()}
                       showIcon
                       className={`rounded-lg border-none border-slate-100 ${
                         fieldState.error ? 'p-invalid' : ''
