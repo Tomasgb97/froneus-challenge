@@ -5,10 +5,11 @@ import { Dialog } from 'primereact/dialog';
 import { Divider } from 'primereact/divider';
 import { InputText } from 'primereact/inputtext';
 import { MultiSelect, MultiSelectChangeEvent } from 'primereact/multiselect';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import createReceiverFileds from './fields';
 import { Campaign } from '@app/types/campaigns/campaign';
+import { CampaignStatus } from '@app/types/campaigns/status';
 
 const CreateNewReceiverDialog: React.FC = ({}) => {
   const {
@@ -17,6 +18,12 @@ const CreateNewReceiverDialog: React.FC = ({}) => {
     createNewReceiver,
   } = useCreateNewReceiver();
   const { campaigns } = useCampaignStore();
+
+  const campaignsToBeAdded = useMemo(() => {
+    return campaigns.filter(
+      (camp) => camp.status !== CampaignStatus.Finalizada
+    );
+  }, [campaigns]);
 
   const {
     handleSubmit,
@@ -105,7 +112,7 @@ const CreateNewReceiverDialog: React.FC = ({}) => {
                 <MultiSelect
                   pt={{ header: { className: 'bg-primary-100' } }}
                   value={field.value}
-                  options={campaigns}
+                  options={campaignsToBeAdded}
                   onChange={(e: MultiSelectChangeEvent) => field.onChange(e)}
                   optionLabel="name"
                   className="w-full overflow-x-hidden border-primary-300 border-2"
