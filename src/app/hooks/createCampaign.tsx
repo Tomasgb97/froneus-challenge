@@ -6,7 +6,7 @@ import { useReceiverStore } from '@app/stores/receiversStore';
 
 const useCreateCampaign = () => {
   const { campaigns, addCampaign } = useCampaignStore();
-  const { addCampaignToReceiver } = useReceiverStore();
+  const { addCampaignToReceivers } = useReceiverStore();
 
   const createCampaign = ({
     name,
@@ -35,7 +35,7 @@ const useCreateCampaign = () => {
     };
 
     addCampaign(newCampaign);
-    addCampaignToReceiver(associatedReceivers, newCampaign.id);
+    addCampaignToReceivers(associatedReceivers, newCampaign.id);
   };
 
   return {

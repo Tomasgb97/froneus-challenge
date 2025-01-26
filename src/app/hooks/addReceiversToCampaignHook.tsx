@@ -4,13 +4,13 @@ import { Person } from '@app/types/person/person';
 import useToast from './UI/useToast';
 const useAddUsersToCampaign = () => {
   const { addUsersToCampaign } = useCampaignStore();
-  const { addCampaignToReceiver } = useReceiverStore();
+  const { addCampaignToReceivers } = useReceiverStore();
   const { fireToast } = useToast();
 
   const addReceivers = (campaignId: number, receivers: Person[]) => {
     try {
       addUsersToCampaign(campaignId, receivers);
-      addCampaignToReceiver(receivers, campaignId);
+      addCampaignToReceivers(receivers, campaignId);
 
       fireToast('Confirmado con exito!', 'success');
     } catch (e) {
