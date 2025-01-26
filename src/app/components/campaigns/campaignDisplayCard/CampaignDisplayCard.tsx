@@ -7,12 +7,14 @@ import { Card } from 'primereact/card';
 import React, { useMemo } from 'react';
 import { useNavigate } from 'react-router';
 
-interface CampaignDisplayCardMobileProps {
+interface CampaignDisplayCardProps {
   campaign: Campaign;
+  hasButtons?: boolean;
 }
 
-const CampaignDisplayCardMobile: React.FC<CampaignDisplayCardMobileProps> = ({
+const CampaignDisplayCard: React.FC<CampaignDisplayCardProps> = ({
   campaign,
+  hasButtons = true,
 }) => {
   const navigate = useNavigate();
   const { setSelectedCampaignId } = useCampaignStore();
@@ -35,7 +37,7 @@ const CampaignDisplayCardMobile: React.FC<CampaignDisplayCardMobileProps> = ({
   const footer = (
     <>
       <Button
-        onClick={() => navigate(`/campaigns/${campaign.id}`)}
+        onClick={() => navigate(`/campaign/${campaign.id}`)}
         label="Editar"
         className="bg-primary-600 p-2 text-white"
       />
@@ -54,7 +56,7 @@ const CampaignDisplayCardMobile: React.FC<CampaignDisplayCardMobileProps> = ({
       <Card
         title={campaign.name}
         subTitle={campaign.status}
-        footer={footer}
+        footer={hasButtons && footer}
         header={header}
         className="md:w-25rem"
         pt={{ subTitle: { className: statusTextStyle } }}
@@ -82,4 +84,4 @@ const CampaignDisplayCardMobile: React.FC<CampaignDisplayCardMobileProps> = ({
   );
 };
 
-export default CampaignDisplayCardMobile;
+export default CampaignDisplayCard;

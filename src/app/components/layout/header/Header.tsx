@@ -15,14 +15,14 @@ const Header: React.FC = () => {
   const items: navItemsProps[] = useMemo(() => {
     return [
       {
-        label: 'Home',
+        label: 'Inicio',
         command: () => {
           navigate('/');
         },
         icon: 'pi pi-home',
       },
       {
-        label: 'Campaigns',
+        label: 'Campañas',
         command: () => {
           navigate('/campaigns');
         },
@@ -33,7 +33,7 @@ const Header: React.FC = () => {
   return (
     <section className="w-full flex justify-between items-center p-4">
       <a className="cursor-pointer select-none h-full px-5">
-        <h1 className="font-bold text-white">Froneus</h1>
+        <h1 className="title-sm">Froneus</h1>
       </a>
 
       <nav>

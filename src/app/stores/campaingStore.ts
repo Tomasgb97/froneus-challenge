@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { Campaign } from '@app/types/campaigns/campaign';
 import { CampaignStatus } from '@app/types/campaigns/status';
+import { Person } from '@app/types/person/person';
 
 interface CampaignStore {
   campaigns: Campaign[];
@@ -13,6 +14,7 @@ interface CampaignStore {
   populateCampaigns: (campaigns: Campaign[]) => void;
   setSelectedStatusFilterValue: (status: CampaignStatus | null) => void;
   setSelectedCampaignId: (id: number | null) => void;
+  addUsersToCampaign: (campaingId: number, newReceivers: Person[]) => void;
 }
 
 export const useCampaignStore = create(
@@ -52,6 +54,28 @@ export const useCampaignStore = create(
         set(() => ({
           selectedCampaignId: id,
         })),
+      addUsersToCampaign: (campaignId: number, newReceivers: Person[]) => {
+        const newReceiversId = newReceivers.map((receiver) => receiver.id);
+
+        set((state) => {
+          const updatedCampaigns = [...state.campaigns];
+
+          for (let i = 0; i < updatedCampaigns.length; i++) {
+            if (updatedCampaigns[i].id === campaignId) {
+              updatedCampaigns[i] = {
+                ...updatedCampaigns[i],
+                associatedReceivers: [
+                  ...(updatedCampaigns[i].associatedReceivers || []),
+                  ...newReceiversId,
+                ],
+              };
+              break;
+            }
+          }
+
+          return { campaigns: updatedCampaigns };
+        });
+      },
     }),
     { name: 'campaign-items' }
   )

@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
 import { ConfirmDialog, ConfirmDialogProps } from 'primereact/confirmdialog';
-import { Toast } from 'primereact/toast';
+
+import useToast from '@hooks/UI/useToast';
 
 interface customConfirmDialogProps extends ConfirmDialogProps {
   dialogMessage: string;
@@ -21,31 +21,20 @@ export default function CustomconfirmDialog({
   visible,
   onHide,
 }: customConfirmDialogProps) {
-  const toast = useRef<Toast>(null);
+  const { fireToast } = useToast();
 
   const accept = () => {
     onAccept && onAccept();
-    toast.current?.show({
-      severity: 'info',
-      summary: 'Confirmado',
-      detail: 'Has confirmado',
-      life: 3000,
-    });
+    fireToast('Confirmado con exito!', 'success');
   };
 
   const reject = () => {
     onReject && onReject();
-    toast.current?.show({
-      severity: 'warn',
-      summary: 'Cancelado',
-      detail: 'Has cancelado',
-      life: 3000,
-    });
+    fireToast('Has cancelado', 'warn');
   };
 
   return (
     <>
-      <Toast ref={toast} />
       <ConfirmDialog
         message={dialogMessage}
         header={dialogHeader}

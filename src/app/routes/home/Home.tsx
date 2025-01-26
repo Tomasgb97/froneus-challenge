@@ -5,9 +5,9 @@ import StatusSelect from '@components/home/statusSelect/StatusSelect';
 const Home: React.FC = () => {
   return (
     <div className="w-full flex flex-col gap-6 items-center px-2">
-      <h1 className=" text-4xl lg:text-7xl text-white font-bold ">
+      <h1 className="title-lg">
         Tus{' '}
-        <a href="/campaigns" className="text-primary-300  transition">
+        <a href="/campaigns" className="text-primary-300">
           campañas
         </a>{' '}
         con nosotros

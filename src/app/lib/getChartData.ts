@@ -26,7 +26,7 @@ export function getChartData(
 
   for (let i = 0; i < newCampaigns.length; i++) {
     data.labels.push(newCampaigns[i].name);
-    data.datasets[0].data.push(newCampaigns[i].associatedReceivers.length - 1);
+    data.datasets[0].data.push(newCampaigns[i].associatedReceivers.length);
   }
 
   return data;
