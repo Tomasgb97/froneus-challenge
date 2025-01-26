@@ -10,7 +10,7 @@ import { Controller, useForm } from 'react-hook-form';
 import createReceiverFileds from './fields';
 import { Campaign } from '@app/types/campaigns/campaign';
 import { CampaignStatus } from '@app/types/campaigns/status';
-import useUIStore from '@app/stores/uiStore';
+import useUIStore from '@app/stores/UI/uiStore';
 
 const CreateNewReceiverModal: React.FC = ({}) => {
   const { createNewReceiver } = useCreateNewReceiver();

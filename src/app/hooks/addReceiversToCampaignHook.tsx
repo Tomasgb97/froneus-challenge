@@ -1,39 +1,30 @@
 import { useCampaignStore } from '@app/stores/campaingStore';
 import { useReceiverStore } from '@app/stores/receiversStore';
 import { Person } from '@app/types/person/person';
-import { Toast } from 'primereact/toast';
-import { useRef } from 'react';
-
+import useToast from './UI/useToast';
 const useAddUsersToCampaign = () => {
   const { addUsersToCampaign } = useCampaignStore();
   const { addCampaignToReceiver } = useReceiverStore();
-  const addReceiverToastRef = useRef<Toast | null>(null);
+  const { fireToast } = useToast();
 
   const addReceivers = (campaignId: number, receivers: Person[]) => {
     try {
       addUsersToCampaign(campaignId, receivers);
       addCampaignToReceiver(receivers, campaignId);
 
-      addReceiverToastRef.current?.show({
-        severity: 'success',
-        summary: 'Exito!',
-        detail: 'Se agregaron los usuarios nuevos a la campaña!',
-        life: 3000,
-      });
+      fireToast('Confirmado con exito!', 'success');
     } catch (e) {
-      addReceiverToastRef.current?.show({
-        severity: 'error',
-        summary: 'Error',
-        detail: 'No pudieron agregarse los nuevos usuarios. intente nuevamente',
-        life: 3000,
-      });
+      fireToast(
+        'Hubo un error agregando el nuevo usuario a la campaña',
+        'error'
+      );
       throw new Error(
         `Failed to add receivers to campaign: ${(e as Error).message}`
       );
     }
   };
 
-  return { addReceivers, addReceiverToastRef };
+  return { addReceivers };
 };
 
 export default useAddUsersToCampaign;

@@ -5,8 +5,7 @@ import { Campaign } from '@app/types/campaigns/campaign';
 import { Button } from 'primereact/button';
 import { Person } from '@app/types/person/person';
 import useAddUsersToCampaign from '@hooks/addReceiversToCampaignHook';
-import { Toast } from 'primereact/toast';
-import useUIStore from '@app/stores/uiStore';
+import useUIStore from '@app/stores/UI/uiStore';
 
 interface AddNewAssociatesProps {
   campaign: Campaign;
@@ -15,7 +14,7 @@ const AddNewAssociates: React.FC<AddNewAssociatesProps> = ({
   campaign,
 }: AddNewAssociatesProps) => {
   const { receivers } = useReceiverStore();
-  const { addReceivers, addReceiverToastRef } = useAddUsersToCampaign();
+  const { addReceivers } = useAddUsersToCampaign();
   const { toggleCreateNewReceiverModal } = useUIStore();
   const [selectedUsers, setSelectedUsers] = useState<Person[]>([]);
 
@@ -32,7 +31,6 @@ const AddNewAssociates: React.FC<AddNewAssociatesProps> = ({
 
   return (
     <div className="flex flex-col items-center gap-9 ">
-      <Toast ref={addReceiverToastRef} />
       <h1 className="title-md text-primary-300">Agregalos</h1>
       <p>Aqui puedes agregar a mas usuarios a esta campaña</p>
 
