@@ -7,14 +7,14 @@ import { Person } from '@app/types/person/person';
 interface CampaignStore {
   campaigns: Campaign[];
   selectedStatusFilterValue: CampaignStatus | null;
-  selectedCampaignId: number | null;
+  selectedCampaignId: string | null;
   addCampaign: (campaign: Campaign) => void;
-  removeCampaign: (id: number) => void;
+  removeCampaign: (id: string) => void;
   clearCampaigns: () => void;
   populateCampaigns: (campaigns: Campaign[]) => void;
   setSelectedStatusFilterValue: (status: CampaignStatus | null) => void;
-  setSelectedCampaignId: (id: number | null) => void;
-  addUsersToCampaign: (campaingId: number, newReceivers: Person[]) => void;
+  setSelectedCampaignId: (id: string | null) => void;
+  addUsersToCampaign: (campaingId: string, newReceivers: Person[]) => void;
 }
 
 export const useCampaignStore = create(
@@ -29,10 +29,8 @@ export const useCampaignStore = create(
         })),
       addCampaign: (campaign) =>
         set((state) => {
-          const newCampaignId = state.campaigns.length + 1;
-
           return {
-            campaigns: [...state.campaigns, { ...campaign, id: newCampaignId }],
+            campaigns: [...state.campaigns, { ...campaign }],
           };
         }),
       clearCampaigns: () => {
@@ -49,11 +47,11 @@ export const useCampaignStore = create(
         set(() => ({
           selectedStatusFilterValue: status,
         })),
-      setSelectedCampaignId: (id: number | null) =>
+      setSelectedCampaignId: (id: string | null) =>
         set(() => ({
           selectedCampaignId: id,
         })),
-      addUsersToCampaign: (campaignId: number, newReceivers: Person[]) => {
+      addUsersToCampaign: (campaignId: string, newReceivers: Person[]) => {
         const newReceiversId = newReceivers.map((receiver) => receiver.id);
 
         set((state) => {

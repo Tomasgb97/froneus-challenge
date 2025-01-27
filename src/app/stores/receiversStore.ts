@@ -8,7 +8,7 @@ interface ReceiverStore {
   removeReceiver: (id: number) => void;
   clearReceivers: () => void;
   populateReceivers: (receivers: Person[]) => void;
-  addCampaignToReceivers: (receivers: Person[], campaignId: number) => void;
+  addCampaignToReceivers: (receivers: Person[], campaignId: string) => void;
 }
 
 export const useReceiverStore = create(
@@ -36,7 +36,7 @@ export const useReceiverStore = create(
         set(() => ({
           receivers: receivers,
         })),
-      addCampaignToReceivers: (newReceivers: Person[], campaignId: number) =>
+      addCampaignToReceivers: (newReceivers: Person[], campaignId: string) =>
         set((state) => {
           const existingReceiversMap = new Map(
             state.receivers.map((existingReceiver) => [
