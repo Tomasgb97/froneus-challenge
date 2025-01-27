@@ -49,6 +49,10 @@ const CampaignsTable: React.FC = ({}) => {
         onClick={() => setSelectedCampaignId(campaign.id)}
         icon="pi pi-times"
         label={'Eliminar'}
+        disabled={
+          campaign.status == CampaignStatus.Activa ||
+          campaign.status == CampaignStatus.Finalizada
+        }
       ></Button>
     );
   };

@@ -37,11 +37,16 @@ const CampaignDisplayCard: React.FC<CampaignDisplayCardProps> = ({
   const footer = (
     <>
       <Button
+        disabled={campaign.status == CampaignStatus.Finalizada}
         onClick={() => navigate(`/campaign/${campaign.id}`)}
         label="Editar"
         className="bg-primary-600 p-2 text-white"
       />
       <Button
+        disabled={
+          campaign.status == CampaignStatus.Activa ||
+          campaign.status == CampaignStatus.Finalizada
+        }
         label="Eliminar"
         severity="secondary"
         className="bg-red-500 p-2 text-white"
