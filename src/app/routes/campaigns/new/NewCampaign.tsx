@@ -1,5 +1,6 @@
 import { useReceiverStore } from '@app/stores/receiversStore';
 import { CampaignStatus } from '@app/types/campaigns/status';
+import useCreateCampaign from '@hooks/createCampaign';
 import { Button } from 'primereact/button';
 import { Calendar } from 'primereact/calendar';
 import { Divider } from 'primereact/divider';
@@ -12,17 +13,35 @@ import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 const NewCampaign: React.FC = () => {
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-    reset,
-  } = useForm();
+  const { handleSubmit, control, reset } = useForm();
   const { receivers } = useReceiverStore();
+  const { createCampaign } = useCreateCampaign();
   const [startTimechecked, setStartTimechecked] = useState<boolean>(false);
   const onSubmit = (data: any) => {
-    console.log('submiting', data);
+    let newCampaign = {} as any;
+    Object.keys(data).forEach((key) => {
+      let keyReference = key.split('-')[1];
+
+      if (keyReference === 'associatedReceivers' && data[key] == undefined) {
+        newCampaign[keyReference] = [];
+        return;
+      }
+
+      if (keyReference === 'startAt' && startTimechecked) {
+        newCampaign[keyReference] = new Date().toISOString();
+        return;
+      } else if (keyReference === 'startAt' && !startTimechecked) {
+        newCampaign[keyReference] = new Date(data[key]).toISOString();
+        return;
+      }
+      newCampaign[keyReference] = data[key];
+    });
+
+    createCampaign(newCampaign);
+    setStartTimechecked(false);
+    reset();
   };
+
   return (
     <div className="p-4 md:p-10 max-w-[22rem] md:max-w-full md:w-[40rem] rounded-lg bg-slate-100">
       <h1 className="title-sm text-primary-500">Crea una nueva campaña</h1>
@@ -60,7 +79,8 @@ const NewCampaign: React.FC = () => {
                     }}
                     className="rounded-lg"
                     id={field.name}
-                    {...field}
+                    value={field.value || ''}
+                    onChange={(e) => field.onChange(e.target.value)}
                   ></InputText>
                   {fieldState.error && (
                     <small className="p-error">
@@ -74,7 +94,7 @@ const NewCampaign: React.FC = () => {
 
           <div className="flex flex-col gap-2 mb-10">
             <label
-              htmlFor="campaign-start"
+              htmlFor="campaign-startAt"
               className="font-semibold text-primary-300"
             >
               Iniciar las llamadas al crear
@@ -90,7 +110,7 @@ const NewCampaign: React.FC = () => {
 
             {!startTimechecked && (
               <Controller
-                name="campaign-start"
+                name="campaign-startAt"
                 control={control}
                 rules={{
                   required: 'Este campo es obligatorio si no activas el switch',
@@ -99,6 +119,7 @@ const NewCampaign: React.FC = () => {
                   <div className="flex flex-col">
                     <small>Selecciona una fecha de inicio:</small>
                     <Calendar
+                      dateFormat="dd/mm/yy"
                       locale="es"
                       minDate={new Date()}
                       showIcon
@@ -123,12 +144,12 @@ const NewCampaign: React.FC = () => {
           <div className="flex flex-col gap-2 mb-10">
             <label
               className="text-primary-300 font-semibold"
-              htmlFor="campaign-receivers"
+              htmlFor="campaign-associatedReceivers"
             >
               ¿Quienes la van a recibir?
             </label>
             <Controller
-              name="campaign-receivers"
+              name="campaign-associatedReceivers"
               control={control}
               render={({ field, fieldState }) => (
                 <div>
@@ -139,6 +160,7 @@ const NewCampaign: React.FC = () => {
                         {receiver.name + ' ' + receiver.surname}
                       </div>
                     )}
+                    pt={{ header: { className: 'bg-primary-100' } }}
                     optionLabel="name"
                     placeholder="Selecciona quienes recibiran las llamadas"
                     className={`w-full ${fieldState.error ? 'p-invalid' : ''}`}
@@ -164,7 +186,10 @@ const NewCampaign: React.FC = () => {
             <Controller
               name="campaign-recording"
               control={control}
-              rules={{ required: 'Este campo es obligatorio' }}
+              rules={{
+                validate: (value) =>
+                  value !== undefined || 'Este campo es obligatorio',
+              }}
               render={({ field, fieldState }) => (
                 <div>
                   <SelectButton
