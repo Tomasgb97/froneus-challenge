@@ -227,7 +227,7 @@ const NewCampaign: React.FC = () => {
                 <div>
                   <ListBox
                     {...field}
-                    options={Object.keys(CampaignStatus).filter(
+                    options={Object.values(CampaignStatus).filter(
                       (s) => s !== CampaignStatus.Finalizada
                     )}
                     optionLabel="status"
