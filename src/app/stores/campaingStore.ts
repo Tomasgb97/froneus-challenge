@@ -29,12 +29,11 @@ export const useCampaignStore = create(
         })),
       addCampaign: (campaign) =>
         set((state) => {
-          const existingCampaign = state.campaigns.find(
-            (c) => c.id == campaign.id
-          );
-          if (existingCampaign) return state;
+          const newCampaignId = state.campaigns.length + 1;
 
-          return { campaigns: [...state.campaigns, campaign] };
+          return {
+            campaigns: [...state.campaigns, { ...campaign, id: newCampaignId }],
+          };
         }),
       clearCampaigns: () => {
         set(() => {
