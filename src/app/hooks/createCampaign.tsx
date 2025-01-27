@@ -17,7 +17,6 @@ const useCreateCampaign = () => {
     status,
     associatedReceivers,
   }: {
-    id: number;
     name: string;
     startAt: string;
     recording: boolean;
@@ -26,7 +25,7 @@ const useCreateCampaign = () => {
   }) => {
     try {
       const newCampaign: Campaign = {
-        id: campaigns.length + 1,
+        id: crypto.randomUUID(),
         name,
         startAt,
         createdAt: new Date().toISOString(),

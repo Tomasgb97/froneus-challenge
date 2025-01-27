@@ -1,7 +1,7 @@
 import { CampaignStatus } from '@app/types/campaigns/status';
 
 export interface Campaign {
-  id: number;
+  id: string;
   name: string;
   createdAt: string;
   startAt: string;
